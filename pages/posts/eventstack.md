@@ -4,7 +4,7 @@ date: 2022-02-26T10:00:00+00:00
 type: Communication
 tags:
   - EventStack
-cover: /img/posts/doit.webp
+cover: /img/posts/eventstack.webp
 authors:
   - name: Jonas Lagoni
     photo: /img/avatars/jonaslagoni.webp

@@ -1,14 +1,13 @@
 {
-  "name": "@lagoni/doit",
+  "name": "@eventstack/website",
   "version": "0.1.0",
-  "description": "DoIt blog",
   "scripts": {
     "dev": "node scripts/build-post-list.js && node scripts/build-rss.js && next -p 8080",
     "build": "node scripts/build-post-list.js && node scripts/build-rss.js && next build",
     "start": "next start",
     "export": "next export",
-    "lint": "yarn lint:js",
-    "lint:js": "eslint --ignore-path .gitignore .",
+    "lint": "eslint --ignore-path .gitignore .",
+    "lint:fix": "eslint --ignore-path .gitignore . --fix",
     "generate:assets": "echo \"No assets to configure\"",
     "test": "echo \"No tests configured yet\"",
     "release": "echo \"No release to npm for this project\""
