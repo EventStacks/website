@@ -1,6 +1,6 @@
 ---
 title: "Gaming Event API - Introduction"
-date: 2022-28-02T10:00:00+00:00
+date: 2022-02-28T10:00:00+00:00
 type: Communication
 tags:
   - GamingEventAPI
