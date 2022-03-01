@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  website:
+    image: portainer/agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.platform.os == linux]
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce
+    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    volumes:
+      - portainer_data:/data
+    environment:
+      - VIRTUAL_HOST=eventstack.tech/
+      - VIRTUAL_PORT=443
+    ports:
+      - 9000:9000
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+volumes:
+  portainer_data:
+
+networks:
+  default:
+    external:
+      name: eventstack
