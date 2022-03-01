@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "node scripts/build-post-list.js && node scripts/build-rss.js && next -p 8080",
     "build": "node scripts/build-post-list.js && node scripts/build-rss.js && next build",
-    "start": "next start --hostname 0.0.0.0",
+    "start": "next start",
     "export": "next export",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "eslint --ignore-path .gitignore . --fix",
