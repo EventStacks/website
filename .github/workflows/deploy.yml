@@ -1,0 +1,50 @@
+# Require the following setup in ssh host:
+# - has directory ~/deployments/
+name: Deploy website
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Configure production SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/production.key
+          chmod 600 ~/.ssh/production.key
+          cat >>~/.ssh/config <<END
+          Host production
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/production.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.PRODUCTION_SSH_USER }}
+          SSH_KEY: ${{ secrets.PRODUCTION_SSH_KEY }}
+          SSH_HOST: ${{ secrets.PRODUCTION_SSH_HOST }}
+
+      - name: Zip files
+        run: |
+          zip ./eventstack_website_$SHA.zip ./docker-compose.yml
+          chmod 600 ./eventstack_website_$SHA.zip
+        env:
+          SHA: ${{ github.sha }}
+
+      - name: Transfer related files
+        run: scp -i ~/.ssh/production.key ./eventstack_website_$SHA.zip production:~/deployments/eventstack_website_$SHA.zip
+        env:
+          SHA: ${{ github.sha }}
+
+      - name: Unpack files
+        run: ssh production "cd ~/deployments/ && unzip eventstack_website_$SHA.zip -d eventstack_website_$SHA"
+        env:
+          SHA: ${{ github.sha }}
+
+      - name: Deploy the stack
+        run: ssh production "cd ~/deployments/eventstack_website_$SHA && docker stack deploy -c ./docker-compose.yml eventstack_website"
+        env:
+          SHA: ${{ github.sha }}
