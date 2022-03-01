@@ -16,3 +16,8 @@ services:
         condition: on-failure
       placement:
         constraints: [node.labels.service == true]
+    networks:
+      - eventstack
+networks:
+  eventstack:
+    external: true
