@@ -70,7 +70,7 @@ export default function PostPage() {
           <div className="mt-12 grid gap-5 max-w-lg lg:grid-cols-12 lg:max-w-none">
             <div className="col-span-5 bg-white p-6 justify-between">
               <h3 className="mt-2 text-xl leading-7 font-semibold text-gray-900">
-                Gaming Event API
+                Gaming API
               </h3>
               <p className="mt-3 text-base leading-6 text-gray-500">
                 <TextTruncate element="span" line={4} text="Enabling everyone to easily interact with game servers through AsyncAPI as the backbone." />
@@ -79,7 +79,7 @@ export default function PostPage() {
                 <a href="/posts?tags=GamingEventAPI" className="place-self-center text-center">
                   Relevant posts
                 </a>
-                <a href="https://gamingeventapi.com" className="place-self-center text-center">
+                <a href="https://gamingapi.org" className="place-self-center text-center">
                     To Project
                   <p className="mt-1 text-base leading-6 text-gray-500">
                     <TextTruncate element="span" line={4} text="gamingeventapi.com" />
