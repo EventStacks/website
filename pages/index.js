@@ -18,7 +18,7 @@ export default function PostPage() {
           <NavBar />
         </Container>
         <Container wide>
-          <Head title="EventStack Posts" />
+          <Head title="EventStack" />
         </Container>
         <div className="grid grid-cols-1 gap-y-4">
           <div className="mt-12 grid gap-5 max-w-lg lg:grid-cols-12 lg:max-w-none">
