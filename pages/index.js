@@ -82,7 +82,7 @@ export default function PostPage() {
                 <a href="https://gamingapi.org" className="place-self-center text-center">
                     To Project
                   <p className="mt-1 text-base leading-6 text-gray-500">
-                    <TextTruncate element="span" line={4} text="gamingeventapi.com" />
+                    <TextTruncate element="span" line={4} text="gamingapi.org" />
                     <div className="mt-8 flex justify-center">
                       <a href="https://github.com/gamingeventapi/" target="_blank" className="text-gray-400 hover:text-gray-500" rel="noreferrer">
                         <span className="sr-only">GitHub</span>
