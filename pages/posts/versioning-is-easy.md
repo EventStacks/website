@@ -1,6 +1,6 @@
 ---
 title: "AsyncAPI versioning is easy"
-date: 2022-02-28T10:00:00+00:00
+date: 2022-03-18T21:00:00+00:00
 type: Engineering
 tags:
   - GamingAPI
@@ -13,7 +13,7 @@ authors:
   - name: Jonas Lagoni
     photo: /img/avatars/jonaslagoni.webp
     link: https://github.com/jonaslagoni
-excerpt: "Take a sneak peak what goes into selecting a versioning strategy."
+excerpt: "Take a sneak peak what goes into selecting a versioning strategy for AsyncAPI."
 ---
 
 As GamingAPI is using AsyncAPI for defining the different applications that comprise the GamingAPI network, I need to figure out how I want to do versioning. Why?
