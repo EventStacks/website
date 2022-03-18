@@ -12,7 +12,7 @@ authors:
 excerpt: "I have never embraced social media platforms, but I need a place where my thoughts can linger."
 ---
 
-My thoughts fly in a million directions, but I have yet to find a way to keep them on track in a single direction, the hope is DoIt can solve that problem for me, give my thoughts a place to linger.
+My thoughts fly in a million directions, but I have yet to find a way to keep them on track in a single direction, the hope is EventStack can solve that problem for me, give my thoughts and suggestions a place to linger.
 
 I have never embraced social media platforms, hell I don't even like LinkedIn. But I like to share engineering work, and if others find these posts interesting that will just be a bonus.
 
