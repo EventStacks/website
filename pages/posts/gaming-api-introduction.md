@@ -1,9 +1,9 @@
 ---
-title: "Gaming Event API - Introduction"
+title: "Gaming API - Introduction"
 date: 2022-02-28T10:00:00+00:00
 type: Communication
 tags:
-  - GamingEventAPI
+  - GamingAPI
 cover: /img/posts/event-gaming-api.webp
 authors:
   - name: Jonas Lagoni
@@ -22,7 +22,7 @@ It will enable anyone to quickly get started with interacting with the services 
 
 I will use this solution as a beacon through what is left to discover with the tools. What don't exist, what need to exist, and what needs to be improved to create an ever better developer experience for the standard.
 
-You will be able to always see all the related posts through [this link](/posts?tags=GamingEventAPI)
+You will be able to always see all the related posts through [this link](/posts?tags=GamingAPI)
 
 > Photo by <a href="https://unsplash.com/@johnnyabroad?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jean-Pierre Brungs</a> on <a href="https://unsplash.com/s/photos/new?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
