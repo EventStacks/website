@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  website:
+  eventstack_website:
     build: ./
     image: ghcr.io/eventstacks/website:main
     ports:
