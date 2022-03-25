@@ -35,7 +35,7 @@ export default function PostPage() {
                 <TextTruncate element="span" line={4} text="The core of everything, any other projects are derivatives." />
               </p>
               <div className="grid grid-cols-2 gap-1 mt-15">
-                <a href="/posts?tag=AsyncAPI" className="text-center">
+                <a href="/posts?tags=AsyncAPI" className="text-center">
                   Relevant posts
                 </a>
                 <a href="https://asyncapi.com" className="text-center">
