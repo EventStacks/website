@@ -1,28 +1,27 @@
 ---
-title: "AsyncAPI versioning is easy"
-date: 2022-03-18T21:00:00+00:00
+title: "AsyncAPI versioning is easy, right?"
+date: 2022-03-25T15:00:00+00:00
 type: Engineering
 tags:
   - GamingAPI
   - NATS
   - AsyncAPI
   - Versioning
-  - Version strategy
 cover: /img/posts/gaming-api-versioning.webp
 authors:
   - name: Jonas Lagoni
     photo: /img/avatars/jonaslagoni.webp
     link: https://github.com/jonaslagoni
-excerpt: "Take a sneak peak what goes into selecting a versioning strategy for AsyncAPI."
+excerpt: "How can you do versioning with AsyncAPI and what goes into selecting a versioning strategy?"
 ---
 
 As GamingAPI is using AsyncAPI for defining the different applications that comprise the GamingAPI network, I need to figure out how I want to do versioning. Why?
 
-Because others can interact with the services provided, it can have catastrophic ripple effects downstream if I don't follow a reliable and consistent strategy. Imagine I accidentally create a small version change but it breaks downstream services? Yea, let't not do that if we can avoid it.
+Because others can interact with the services provided, it can have catastrophic ripple effects downstream if I don't follow a reliable and consistent strategy. Imagine I accidentally create a small version change but it breaks downstream services? Yea, let's not do that if we can avoid it.
 
 However, there are no well-defined resources for how to handle versioning in AsyncAPI ([yet](https://github.com/asyncapi/website/issues/622)). Therefore we will have to do a bit of investigation as to how to handle this.
 
-As it turns out, versioning is by no means easy as the title describes... The version strategy you use with AsyncAPI depends on many different variables that affect the pros and cons of the type of strategies you can use. 
+**As it turns out, versioning is by no means easy as the title describes**... The version strategy you use with AsyncAPI depends on many different variables that affect the pros and cons of the type of strategies you can use. Let's try and determine what strategies are there and what affects the decision.
 
 > TLDR: No one strategy fits all - There is no silver bullet! Know the different choices and weigh the possibilities to the best of your ability and learn as you go.
 
@@ -46,7 +45,7 @@ However, you could say this is where versioning types really come into the pictu
 
 The most used (that I know) of version types are [calendar versioning](https://calver.org/) and [semantic versioning](https://semver.org/), which both have benefits and drawbacks. 
 
-The way I see the difference between the two is that `calver` is major version in `semver` and is interpreted as such.
+The way I see the difference between the two is that `calver` is a major version in `semver` and is interpreted as such.
 
 ## Things to consider when deciding
 Now that you have the basic rundown of the types of versioning you can do, let's look at what might affect your strategy.
@@ -125,22 +124,23 @@ Consider the following channel payload:
 channels:
   v1/game/server/started:
     publish: 
-      payload:
-        type: object
-        required: 
-          - test
-        properties:
-          test:
-            type: string
+      message:
+        payload:
+          type: object
+          required: 
+            - test
+          properties:
+            test:
+              type: string
 ```
 
 Say I wanted to make the `test` property optional, do you consider that a breaking change?
 
-**The reality is that it's both**, and it depends on your perspective. For anyone who produce the event, because if it was required before, old producers will just always include the property, for new producers they potentially include it. 
+**The reality is that it's both**, and it depends on your perspective. For anyone who produces the event, because if it was required before, old producers will always include the property, for new producers they potentially include it. So from that perspective, there are no issues. 
 
-But what about your consumers? If they expect that property to always be present, and it's suddenly is not? Well, that's a breaking change for them. 
+But what about your consumers? If they expect the property to always be present, and it's suddenly is not? Well, that's a breaking change for them. 
 
-You can reverse this example as well, so it's a breaking change for the producer instead of the consumer (This is also a [subject for discussion in the AsyncAPI spec itself](https://github.com/asyncapi/spec/issues/688)).
+You can reverse this example as well, so it's a breaking change for the producer instead of the consumer (This is also a [subject for discussion in the AsyncAPI specification itself](https://github.com/asyncapi/spec/issues/688)).
 
 Therefore, there are very few things you are allowed to change (I don't think this is the full list, but this is what comes to mind at the moment):
 - Adding new things (to name a few: optional properties and enum values)
@@ -148,15 +148,13 @@ Therefore, there are very few things you are allowed to change (I don't think th
 
 Anything else is not allowed to change in any way without it being considered a breaking change.
 
-## Conclusion
+## Next
 
-At least that is my thoughts at the moment, will they change? Probably... Learn from the past as well as you can and then just get going and find your own learnings.
+At least that is my thoughts at the moment, will they change? Probably...
 
-The next question becomes, how do we want to apply these decisions in practice? **Cause there is no way** I will remember all of these rules and enforce them, and I am the one that made them!
+The next question becomes, how do you use the version strategy in practice? 
 
-That's gonna be the next blog post about versioning. How do you apply the strategy to your AsyncAPI documents?
-
-Further Resources:
+Further Resources about the subject:
 - https://valerii-udodov.com/posts/event-sourcing/events-versioning/
 - https://apisyouwonthate.com/blog/api-versioning-has-no-right-way
 - https://www.mnot.net/blog/2012/12/04/api-evolution.html
