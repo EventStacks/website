@@ -15,9 +15,15 @@ authors:
     link: https://github.com/jonaslagoni
 excerpt: "Not that the strategy is in place, how do you accomplish it in practice?"
 ---
-Before getting comfortable, please do check out the [first versioning post](/posts/versioning-is-easy) which clarify the version strategy this post continues of. Also the [entire governance guidelines might be of good to visit before continuing](/posts/governance-getting-started).
+Before getting comfortable, please do check out the [first versioning post](/posts/versioning-is-easy) which clarify the version strategy this post continues of. Also the [governance post might be of good to visit before continuing](/posts/governance-getting-started).
 
 ## AsyncAPI versioning in practice
+
+So... We have a version strategy in place, but how do we take it out in practice? 
+
+I want to do as minimal amount of work as possible to ensure we always comply with the defined governance rules and version strategy. So therefore I am taking some inspiration from how libraries are released in AsyncAPI - and that is through conventional release.  
+
+
 In order to ease how to keep the version number of the AsyncAPI documents in sync with the changes, I will leverage semantic versioning. I will do this through [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
 For example I can add new channels to existing documents through a commit such as `feat: add game server started channel` which should automatically make a minor version bump for the related AsyncAPI document.
@@ -103,7 +109,7 @@ jobs:
 
 I really want to leverage [AsyncAPI Diff](https://github.com/asyncapi/dif) to not rely on conventional commits and human opinion on what changed. With that library it would completely remove the human part and ensure we make less errors in regards to what how to bump the API. 
 
-But for now that ends the AsyncAPI document versioning posts, at least for now I don't have anything planned.
+In order to ensure that the AsyncAPI files always comply with our governance rules, we must leverage linting and other tools to ensure we never break the defined governance rules regarding versioning. That will be the next post.
 
 > Photo by <a href="https://unsplash.com/@saycheezestudios?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Say Cheeze Studios</a> on <a href="https://unsplash.com/s/photos/first-second-third?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
