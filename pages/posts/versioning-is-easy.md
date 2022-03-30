@@ -1,7 +1,9 @@
 ---
 title: "AsyncAPI versioning is easy, right?"
 date: 2022-03-26T20:00:00+00:00
-type: Engineering
+type: 
+  - Engineering
+  - Governance
 tags:
   - GamingAPI
   - NATS
