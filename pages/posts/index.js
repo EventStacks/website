@@ -55,7 +55,7 @@ export default function PostPage() {
               </span>
             </div>
           </div>
-          <div className="mt-12 grid gap-5 max-w-lg mx-auto lg:grid-cols-4 lg:max-w-none">
+          <div className="mt-12 grid gap-5 mx-auto xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 lg:max-w-none">
             {
               posts.map((post, index) => (
                 <BlogPostItem key={index} post={post} />
