@@ -8,21 +8,27 @@ tags:
   - GamingAPI
   - AsyncAPI
   - Versioning
-cover: /img/posts/governance-versioning.webp
+cover: /img/posts/versioning-in-practice.webp
 authors:
   - name: Jonas Lagoni
     photo: /img/avatars/jonaslagoni.webp
     link: https://github.com/jonaslagoni
 excerpt: "Not that the strategy is in place, how do you accomplish it in practice?"
 ---
+
 Before getting comfortable, please do check out the [first versioning post](/posts/versioning-is-easy) which clarify the version strategy this post continues of. Also the [governance post might be of good to visit before continuing](/posts/governance-getting-started).
+
+Ultimately I want to enforce the following governance guidelines:
+
+- MUST use semantic versioning [116] (read more about the versioning strategy here).
+- MUST never break compatibility (read more about the versioning strategy here).
+
 
 ## AsyncAPI versioning in practice
 
-So... We have a version strategy in place, but how do we take it out in practice? 
-
+When I make changes to the APIs, I do not want to spend time on manually handle versioning. In an optimal world the CI system should be able to automatically find the correct version change based on the changes proposed.
+ 
 I want to do as minimal amount of work as possible to ensure we always comply with the defined governance rules and version strategy. So therefore I am taking some inspiration from how libraries are released in AsyncAPI - and that is through conventional release.  
-
 
 In order to ease how to keep the version number of the AsyncAPI documents in sync with the changes, I will leverage semantic versioning. I will do this through [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
