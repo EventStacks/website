@@ -16,23 +16,23 @@ authors:
 excerpt: "Now that there is a version strategy, how do you use it in practice?"
 ---
 
-Before getting comfortable, please do check out the [first versioning post](/posts/versioning-is-easy) which clarifies the version strategy this post continues of. Please do remember, that the workflow in this post, is not one workflow to fit all use-cases. Again weigh the pros and cons against your versioning strategy.
+Before getting comfortable, make sure to check out the [first versioning post](/posts/versioning-is-easy) which clarifies the version strategy this post continues of.
+
+In order to figure out how to do version changes, you need to figure out the workflow at which you propose changes for the APIs.
 
 ## AsyncAPI versioning in practice
 
-If you were a contributor, how would you like to propose your changes to the APIs?
+I personally enjoy using the workflow process [we have at AsyncAPI](https://github.com/asyncapi/.github/blob/master/CONTRIBUTING.md), and I want to use the same workflow for [GamingAPI](https://gamingapi.org).
 
-I truly enjoy the workflow process [we have at AsyncAPI](https://github.com/asyncapi/.github/blob/master/CONTRIBUTING.md), and I want to use the same pattern for [GamingAPI](https://gamingapi.org) and how to make changes to the APIs.
+The workflow is as follows: `Open an issue -> Open a PR -> Merge the changes`.
 
-The pattern is as follows: `Open an issue -> Open a PR -> Merge the changes`.
-
-This pattern has a couple of benefits that will be necessary to have down the line: 
+This workflow has a couple of benefits that will be necessary to have down the line: 
 1. We can create GitHub workflows to automatically check [against your design guidelines](https://eventstack.tech/posts/getting-started-with-governance#consistency) (which the next couple of posts will focus on).
 2. Once a PR has been merged, it's possible to automate the release process and do different kinds of actions such as version bumping (as this post is about), bundling, automatic code generation, etc.
 
 When you open a PR, you should not care about manually changing the version. In an optimal world, the CI system should be able to automatically find the correct version change based on the changes and your version strategy. However, we will have to settle with using something called [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), at least for now. In the future, I might want to leverage [AsyncAPI Diff](https://github.com/asyncapi/diff) to not rely on conventional commits and human opinion on what changed. With diff, it would completely remove it to ensure fewer errors are made and ensure we never break compatibility.
 
-Back to conventional commits, they enable you to make iteratively make changes to the APIs. To that end, we need a GitHub action to do this, which I had to create [jonaslagoni/gh-action-asyncapi-document-bump](https://github.com/jonaslagoni/gh-action-asyncapi-document-bump).
+Back to conventional commits, they enable you to make iteratively changes to the APIs. Therefore we need a GitHub action to support that workflow and can help ensure the version changes accordingly. As no GitHub actions where available I had to create one, [jonaslagoni/gh-action-asyncapi-document-bump](https://github.com/jonaslagoni/gh-action-asyncapi-document-bump).
 
 Because the AsyncAPI documents all reside in one repository, we need to create a GitHub workflow for each API. For the [Rust game server](https://github.com/GamingAPI/definitions/blob/main/.github/workflows/bump-rust-server-version.yml), its AsyncAPI document is bumped through the following GitHub workflow: 
 
