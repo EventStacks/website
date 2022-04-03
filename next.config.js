@@ -20,7 +20,17 @@ const withMDX = require('@next/mdx')({
   },
 })
 module.exports = {
+  async redirects() {
+    return [
+      {
+        source: '/posts/governance-getting-started',
+        destination: '/posts/getting-started-with-governance',
+        permanent: true,
+      },
+    ]
+  },
   ...withMDX({
     pageExtensions: ['js', 'md']
   })
 }
+
