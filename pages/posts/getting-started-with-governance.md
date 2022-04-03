@@ -53,7 +53,7 @@ Furthermore, the following is added to extend the above:
 ## Delivery
 I want to set some requirements for the delivery of the APIs and what consumers can expect from them.
 
-- MUST monitor all GaminAPI services (If there exist services within the GamingAPI network they MUST be monitored).
+- MUST monitor all GamingAPI services (If there exist services within the GamingAPI network they MUST be monitored).
 - MUST make pre-built clients easily accessible for each public consumer (if it is expected others (outside of GamingAPI are a consumer or producers of events, i.e. the AsyncAPI document is targeting them) pre-built binaries MUST be made available. This will be through code generation from the specification).
 - MUST always use the newest specification version (each time a new specification version is released, the underlying documents must be kept up to date).
 
