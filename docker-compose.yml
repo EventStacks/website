@@ -7,9 +7,9 @@ services:
       - 3000
     restart: unless-stopped
     deploy:
-      replicas: 1
+      replicas: 2
       update_config:
-        delay: 5m
+        delay: 1m
         parallelism: 1
         failure_action: rollback
       restart_policy:
