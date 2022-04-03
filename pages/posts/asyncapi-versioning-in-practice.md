@@ -16,25 +16,31 @@ authors:
 excerpt: "Now that there is a version strategy, how do you use it in practice?"
 ---
 
-Before getting comfortable, make sure to check out the [first versioning post](/posts/versioning-is-easy) which clarifies the version strategy this post continues of.
+Before getting comfortable, this is a continuum of the [first versioning post](/posts/versioning-is-easy) which clarifies the version strategy this post takes to practice.
 
-In order to figure out how to do version changes, you need to figure out the workflow at which you propose changes for the APIs.
 
-## AsyncAPI versioning in practice
 
-I personally enjoy using the workflow process [we have at AsyncAPI](https://github.com/asyncapi/.github/blob/master/CONTRIBUTING.md), and I want to use the same workflow for [GamingAPI](https://gamingapi.org).
+The workflow at which you propose changes to the APIs is what you can build the version strategy around. So even though I want to focus on the versioning aspect, I don't think you can bring that forward without also talking about how changes are to be proposed and integrated. 
+
+## The Workflow
+
+I personally enjoy using the workflow process [we have at AsyncAPI](https://github.com/asyncapi/.github/blob/master/CONTRIBUTING.md), and I want to use the same workflow for changes against the APIs for [GamingAPI](gamingapi.org).
 
 The workflow is as follows: `Open an issue -> Open a PR -> Merge the changes`.
 
-This workflow has a couple of benefits that will be necessary to have down the line: 
-1. We can create GitHub workflows to automatically check [against your design guidelines](https://eventstack.tech/posts/getting-started-with-governance#consistency) (which the next couple of posts will focus on).
-2. Once a PR has been merged, it's possible to automate the release process and do different kinds of actions such as version bumping (as this post is about), bundling, automatic code generation, etc.
+This workflow has a couple of benefits that will be paramount to have down the line: 
+1. We can create GitHub workflows to automatically check [against the design guidelines](https://eventstack.tech/posts/getting-started-with-governance#consistency).
+2. Once a PR has been merged, it's possible to automate the release process and do different kinds of actions such as version bumping (as the next section focuses on), bundling, automatic code generation, etc.
 
-When you open a PR, you should not care about manually changing the version. In an optimal world, the CI system should be able to automatically find the correct version change based on the changes and your version strategy. However, we will have to settle with using something called [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), at least for now. In the future, I might want to leverage [AsyncAPI Diff](https://github.com/asyncapi/diff) to not rely on conventional commits and human opinion on what changed. With diff, it would completely remove it to ensure fewer errors are made and ensure we never break compatibility.
+## Versioning in practice
 
-Back to conventional commits, they enable you to make iteratively changes to the APIs. Therefore we need a GitHub action to support that workflow and can help ensure the version changes accordingly. As no GitHub actions where available I had to create one, [jonaslagoni/gh-action-asyncapi-document-bump](https://github.com/jonaslagoni/gh-action-asyncapi-document-bump).
+When you open a PR, you should not care about manually changing the version. In an optimal world, the CI system should be able to automatically find the correct version change based on the changes and your version strategy. However, we will have to settle with using something called [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), at least for now. In the future, I might want to leverage [AsyncAPI Diff](https://github.com/asyncapi/diff) to not rely on conventional commits and human opinion on what changed to determine the new version number. 
 
-Because the AsyncAPI documents all reside in one repository, we need to create a GitHub workflow for each API. For the [Rust game server](https://github.com/GamingAPI/definitions/blob/main/.github/workflows/bump-rust-server-version.yml), its AsyncAPI document is bumped through the following GitHub workflow: 
+Back to conventional commits, they enable you to make iterative changes to the APIs. For node projects, you can utilize something like [sematic release](https://github.com/semantic-release/semantic-release) which makes the release process much easier. 
+
+For versioning AsyncAPI documents I could not find any tools to help change the version of the API through conventional commits. Therefore I had to create one, [jonaslagoni/gh-action-asyncapi-document-bump](https://github.com/jonaslagoni/gh-action-asyncapi-document-bump).
+
+Because the AsyncAPI documents all reside in one repository, we need to create a GitHub workflow for each AsyncAPI document. For the [Rust game server](https://github.com/GamingAPI/definitions/blob/main/.github/workflows/bump-rust-server-version.yml), its AsyncAPI document is bumped through the following GitHub workflow: 
 
 ```yml
 name: Bump release rust server
@@ -77,15 +83,19 @@ jobs:
           body: Version bump rust server
           branch: 'version-bump/rust-server-v${{steps.version_bump.outputs.newVersion}}'
 ```
-To briefly explain what happens in the workflow jobs. In the `Automated version bump` job the GitHub action is figuring out, based on the commit history of relevant files, how it should bump the API version in the AsyncAPI document. It finds all commits up until it encounters the declared release commit message which bumped the version last time (defined in `commit-message`). Based on the related commits it bumps the AsyncAPI version accordingly to [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
+To briefly explain what happens in the workflow.
 
-If the AsyncAPI document was bumped, the `Create pull request with bumped version` job commits the changes and creates a PR with the new version for the API. 
+1. In the `Automated version bump` job the GitHub action is figuring out, based on the commit history of relevant files, how it should bump the API version in the AsyncAPI document. It finds all commits up until it encounters the declared release commit message which bumped the version last time (defined in `commit-message`). 
+2. Based on the related commits it bumps the AsyncAPI version accordingly to [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/).
+3. If the AsyncAPI document was bumped, the `Create pull request with bumped version` job commits the changes and creates a PR with the new version for the API.
 
-### Ensure PRs stay consistent 
-To ensure that we don't commit wrong titles, we need to make sure each PR title (so when commits are squashed it triggers the correct version change) lint's it against conventional commits. For that you can use the simple GitHub action [amannn/action-semantic-pull-request](https://github.com/amannn/action-semantic-pull-request):
+And that's it, you now use conventional commits to make continuous releases. One important thing with conventional commits is they of course only work when the commit title follows the specification. 
+
+## Ensure PRs follow conventional commits 
+To ensure that we don't commit wrong commit titles, we need to make sure each PR title (so when commits are squashed it triggers the correct version change) are linted against the conventional commits specification. For that you can use the simple GitHub action [amannn/action-semantic-pull-request](https://github.com/amannn/action-semantic-pull-request):
 
 ```yml
-name: "Lint PR title"
+name: "Test PR"
 
 on:
   pull_request_target:
@@ -95,18 +105,18 @@ on:
       - synchronize
 
 jobs:
-  main:
-    name: Validate PR title
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: amannn/action-semantic-pull-request@v4
+      - name: Lint PR title
+        uses: amannn/action-semantic-pull-request@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Next
 
-Next up is to ensure that each PR comply with all the [design guidelines](/posts/getting-started-with-governance#consistency) so they are not an empty promise. This can be done using various GitHub workflows with various tools.
+Next up is to ensure that each PR comply with all the [design guidelines](/posts/getting-started-with-governance#consistency) so they are not an empty promise.
 
 > Photo by <a href="https://unsplash.com/@saycheezestudios?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Say Cheeze Studios</a> on <a href="https://unsplash.com/s/photos/first-second-third?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
