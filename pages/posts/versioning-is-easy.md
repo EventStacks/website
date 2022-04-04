@@ -149,7 +149,7 @@ Anything else is not allowed to change in any way without it being considered a 
 
 ## Next
 
-At least that is my thoughts at the moment, will they change in the future? Maybe... The next question becomes, how do you use the version strategy in practice? 
+At least that is my thoughts at the moment, will they change in the future? Maybe... The next question becomes, [how do you use the version strategy in practice?](/posts/versioning-in-practice) 
 
 Related resources about the subject:
 - https://valerii-udodov.com/posts/event-sourcing/events-versioning/
