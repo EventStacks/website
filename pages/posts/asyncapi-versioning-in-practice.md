@@ -1,6 +1,6 @@
 ---
 title: "AsyncAPI versioning in practice"
-date: 2022-04-01T15:00:00+00:00
+date: 2022-04-04T16:00:00+00:00
 type: 
   - Engineering
   - Governance
@@ -13,12 +13,10 @@ authors:
   - name: Jonas Lagoni
     photo: /img/avatars/jonaslagoni.webp
     link: https://github.com/jonaslagoni
-excerpt: "Now that there is a version strategy, how do you use it in practice?"
+excerpt: "With a version strategy in place, how do you put it into practice?"
 ---
 
-Before getting comfortable, this is a continuum of the [first versioning post](/posts/versioning-is-easy) which clarifies the version strategy this post takes to practice.
-
-
+Before getting comfortable, this is a continuum of the [first versioning post](/posts/versioning-is-easy) which clarifies the version strategy this post takes into practice.
 
 The workflow at which you propose changes to the APIs is what you can build the version strategy around. So even though I want to focus on the versioning aspect, I don't think you can bring that forward without also talking about how changes are to be proposed and integrated. 
 
