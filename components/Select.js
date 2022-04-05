@@ -11,7 +11,7 @@ export default function Select({
       value={selected}
     >
       {options.map((option, index) => (
-        <option key={index} selected={option.value === selected} value={option.value}>
+        <option key={index} defaultValue={option.value === selected} value={option.value}>
           {option.text}
         </option>
       ))}

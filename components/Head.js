@@ -1,16 +1,15 @@
 import { useContext } from 'react'
 import Head from 'next/head'
 import AppContext from '../context/AppContext'
-import ReactGA from 'react-ga'
 
 export default function HeadComponent({
   title,
-  description = 'EventStack website',
-  image = '/img/social/card.png',  // Need to fix this!
+  description = 'EventStack contains real software projects and their execution and problems',
+  image = '/img/event-stack.webp',  // Need to fix this!
   rssTitle = 'RSS Feed for the EventStack Blog',
   rssLink = '/rss.xml'
 }) {
-  const url = process.env.DEPLOY_PRIME_URL || process.env.DEPLOY_URL
+  const url = process.env.NEXT_PUBLIC_BASE_PATH ? process.env.NEXT_PUBLIC_BASE_PATH : '';
   const { path = '' } = useContext(AppContext)
   const permalink = `${url}${path}`
   let type = 'website'

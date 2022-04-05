@@ -36,7 +36,7 @@ export default function BlogLayout({ post, children }) {
   }
 
   const translationsElements = translations(post);
-
+  const postImage = `${process.env.NEXT_PUBLIC_BASE_PATH ? process.env.NEXT_PUBLIC_BASE_PATH : ''}${post.cover}`;
   return (
     <div className="relative pt-8 pb-20 px-4 sm:px-6 lg:pt-6 lg:pb-28 lg:px-8">
     <BlogContext.Provider value={{ post }}>
@@ -76,28 +76,9 @@ export default function BlogLayout({ post, children }) {
               <Head
                 title={post.title}
                 description={post.excerpt}
-                image={post.cover}
+                image={postImage}
               />
-              <HtmlHead>
-                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60ffbbba2767da29" async />
-                <style>{`
-                  /* AddThis hack */
-
-                  #at4-share {
-                      left: 50%;
-                      margin-left: -500px !important;
-
-                      &amp;.addthis-animated {
-                        animation-duration: 0s !important;
-                      }
-                  }
-
-                  #at4-scc {
-                      display: none !important;
-                  }
-                `}</style>
-              </HtmlHead>
-              <img src={`${process.env.NEXT_PUBLIC_BASE_PATH ? process.env.NEXT_PUBLIC_BASE_PATH : ''}${post.cover}`} alt={post.coverCaption} title={post.coverCaption} className="mt-6 mb-6 w-full" />
+              <img src={postImage} alt={post.coverCaption} title={post.coverCaption} className="mt-6 mb-6 w-full" />
               {translationsElements}
               {children}
             </article>

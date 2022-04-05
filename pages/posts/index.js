@@ -39,7 +39,7 @@ export default function PostPage() {
           <NavBar />
         </Container>
         <Container wide>
-          <Head title="EventStack Posts" />
+          <Head title="EventStack Posts" description="EventStack Posts real life use-cases for tooling and specification which revolves around AsyncAPI, JSON Schema, OpenAPI and GamingAPI."/>
         </Container>
         <div className="relative max-w-9xl mx-auto">
           <div className="text-center">
