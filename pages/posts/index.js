@@ -66,7 +66,7 @@ export default function PostPage() {
       </div>
       <div className="text-center">
         <p className="max-w-2xl mx-auto text-md leading-7 text-gray-400">
-          <img className="ml-1 text-primary-500 hover:text-primary-400" style={{ display: 'inline' }} src={`${process.env.NEXT_PUBLIC_BASE_PATH ? process.env.NEXT_PUBLIC_BASE_PATH : ''}/img/logos/rss.svg`} height="18px" width="18px" /> <Link className="ml-1 text-primary-500 hover:text-primary-400" href="/rss.xml">RSS Feed</Link>
+          <img className="ml-1 text-primary-500 hover:text-primary-400" style={{ display: 'inline' }} src={`${process.env.NEXT_PUBLIC_BASE_PATH ? process.env.NEXT_PUBLIC_BASE_PATH : ''}/img/logos/rss.svg`} height="18" width="18" alt="RSS logo" /> <Link className="ml-1 text-primary-500 hover:text-primary-400" href="/rss.xml">RSS Feed</Link>
         </p>
       </div>
       <Footer />

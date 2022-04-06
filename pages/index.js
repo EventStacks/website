@@ -34,13 +34,19 @@ export default function PostPage() {
                 <TextTruncate element="span" line={4} text="The core of everything, any other projects are derivatives." />
               </p>
               <div className="grid grid-cols-2 gap-1 mt-15">
-                <a href="/posts?tags=AsyncAPI" className="text-center">
-                  Relevant posts
-                </a>
-                <a href="https://asyncapi.com" className="text-center">
-                    To Project
+                <div className="col-span-1 bg-white p-6 justify-between">
+                  <a href="/posts?tags=AsyncAPI" className="text-center">
+                    Relevant posts
+                  </a>
+                </div>
+                <div className="col-span-1 bg-white p-6 justify-between">
+                  <p className="text-center">
+                    <a href="https://asyncapi.com" className="text-center">
+                      To Project
+                      <p className="mt-1 text-base leading-6 text-gray-500">asyncapi.com</p>
+                    </a>
+                  </p>
                   <p className="mt-1 text-base leading-6 text-gray-500">
-                    <TextTruncate element="span" line={4} text="asyncapi.com" />
                     <div className="mt-8 flex justify-center">
                       <a href="https://linkedin.com/company/asyncapi" target="_blank" className="text-gray-400 hover:text-blue-500" rel="noreferrer">
                         <span className="sr-only">LinkedIn</span>
@@ -60,7 +66,7 @@ export default function PostPage() {
                       </a>
                     </div>
                   </p>
-                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -75,13 +81,19 @@ export default function PostPage() {
                 <TextTruncate element="span" line={4} text="Enabling everyone to easily interact with game servers through AsyncAPI as the backbone." />
               </p>
               <div className="grid grid-cols-2 gap-1 mt-15">
-                <a href="/posts?tags=GamingAPI" className="place-self-center text-center">
-                  Relevant posts
-                </a>
-                <a href="https://gamingapi.org" className="place-self-center text-center">
-                    To Project
+                <div className="col-span-1 bg-white p-6 justify-between">
+                  <a href="/posts?tags=GamingAPI" className="place-self-center text-center">
+                    Relevant posts
+                  </a>
+                </div>
+                <div className="col-span-1 bg-white p-6 justify-between">
+                  <p className="text-center">
+                    <a href="https://gamingapi.org" className="text-center">
+                      To Project
+                      <p className="mt-1 text-base leading-6 text-gray-500">gamingapi.org</p>
+                    </a>
+                  </p>
                   <p className="mt-1 text-base leading-6 text-gray-500">
-                    <TextTruncate element="span" line={4} text="gamingapi.org" />
                     <div className="mt-8 flex justify-center">
                       <a href="https://github.com/GamingAPI/" target="_blank" className="text-gray-400 hover:text-gray-500" rel="noreferrer">
                         <span className="sr-only">GitHub</span>
@@ -89,7 +101,7 @@ export default function PostPage() {
                       </a>
                     </div>
                   </p>
-                </a>
+                </div>
               </div>
             </div>
             <img className="h-60 col-span-6 object-cover" alt="" width="100%" src="/img/event-stack.webp" />
