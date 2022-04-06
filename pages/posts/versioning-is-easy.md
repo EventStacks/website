@@ -45,7 +45,7 @@ In AsyncAPI you can define the `version` for the AsyncAPI document (as for OpenA
 
 One thing to notice is that there is different versioning types here. The most used (that I know) of version types are [calendar versioning](https://calver.org/) and [semantic versioning](https://semver.org/), which both have benefits and drawbacks. 
 
-The way I see the difference between the two is that `calver` is always a new major version in `semver`. That way you ensure that the old API never breaks the new one.
+The way I see the difference between the two is that `calver` is always a new major version in `semver` regardless of what changed. 
 
 ## Things you might want to consider
 Now that you have the basic rundown of the different ways to do versioning, let's look at what might affect your decision making.
