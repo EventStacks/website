@@ -13,7 +13,7 @@ export default function HeadComponent({
   const { path = '' } = useContext(AppContext)
   const permalink = `${url}${path}`
   let type = 'website'
-  if (path.startsWith('/docs') || path.startsWith('/blog')) type = 'article'
+  if (path.startsWith('/posts')) type = 'article'
   if (!image.startsWith('http') && !image.startsWith('https')) image = `${url}${image}`
   const permTitle = 'EventStack'
   title = title ? `${title} | ${permTitle}` : permTitle
@@ -47,9 +47,8 @@ export default function HeadComponent({
       <meta property="og:title" content={title} />
       <meta property="og:type" content={type} />
       <meta property="og:url" content={permalink} />
-      <meta property="og:image" content={image} />
+      <meta name="image" property="og:image" content={image} />
       <meta property="og:description" content={description} />
-
       <title>{title}</title>
     </Head>
   )
