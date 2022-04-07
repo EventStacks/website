@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import HtmlHead from 'next/head'
 import ErrorPage from 'next/error'
+import Custom404 from '../../pages/404'
 import Link from 'next/link'
 import moment from 'moment'
 import Head from '../Head'
@@ -27,12 +28,12 @@ function translations(post) {
 }
 
 export default function BlogLayout({ post, children }) {
-  if (!post) return <ErrorPage statusCode={404} />
+  if (!post) return <Custom404 />
   if (post.title === undefined) throw new Error('Post title is required')
 
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
+    return <Custom404 />
   }
 
   const translationsElements = translations(post);
