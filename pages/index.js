@@ -20,18 +20,18 @@ export default function PostPage() {
           <Head title="Projects" />
         </Container>
         <div className="grid grid-cols-1 gap-y-4">
-          <div className="mt-12 grid gap-5 max-w-lg lg:grid-cols-12 lg:max-w-none">
-            <div className="h-60 col-span-6 object-cover">
+          <div className="mt-12 grid gap-5 lg:grid-cols-12 lg:max-w-none">
+            <div className="h-60 lg:col-span-6 sm:col-span-12 object-cover">
               <center>
-                <LogoAsyncAPI style={{"width":"70%"}}/>
+                <LogoAsyncAPI className={"h-60 w-auto mt-0.5"}/>
               </center>
             </div>
-            <div className="col-span-5 bg-white p-6 justify-between">
+            <div className="lg:col-span-6 sm:col-span-12 bg-white p-6 justify-between">
               <h3 className="mt-2 text-xl leading-7 font-semibold text-gray-900">
                 AsyncAPI
               </h3>
               <p className="mt-3 text-base leading-6 text-gray-500">
-                <TextTruncate element="span" line={4} text="The core of everything, any other projects are derivatives." />
+                <TextTruncate element="span" line={4} text="Used as single source of truth for any application within a system. This is the core project any other derive from." />
               </p>
               <div className="grid grid-cols-2 gap-1 mt-15">
                 <div className="col-span-1 bg-white p-6 justify-between">
@@ -72,13 +72,13 @@ export default function PostPage() {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-y-4">
-          <div className="mt-12 grid gap-5 max-w-lg lg:grid-cols-12 lg:max-w-none">
-            <div className="col-span-5 bg-white p-6 justify-between">
+          <div className="mt-12 grid gap-5 lg:grid-cols-12 lg:max-w-none">
+            <div className="lg:col-span-6 sm:col-span-12 bg-white p-6 justify-between">
               <h3 className="mt-2 text-xl leading-7 font-semibold text-gray-900">
                 GamingAPI
               </h3>
               <p className="mt-3 text-base leading-6 text-gray-500">
-                <TextTruncate element="span" line={4} text="Enabling everyone to easily interact with game servers through AsyncAPI as the backbone." />
+                <TextTruncate element="span" line={4} text="Enabling everyone to easily interact with game servers through AsyncAPI as the backbone. When AsyncAPI is used as a single source of truth you get amazing documentation, segregation of messages, code generation, versioning, ..., all in one bucket." />
               </p>
               <div className="grid grid-cols-2 gap-1 mt-15">
                 <div className="col-span-1 bg-white p-6 justify-between">
@@ -104,7 +104,7 @@ export default function PostPage() {
                 </div>
               </div>
             </div>
-            <img className="h-60 col-span-6 object-cover" alt="" width="100%" src="/img/event-stack.webp" />
+            <img className="h-60 lg:col-span-6 sm:col-span-12 object-cover" alt="" width="100%" src="/img/event-stack.webp" />
           </div>
         </div>
       </div>
