@@ -26,7 +26,7 @@ It sounds like a dry pill you just have to swallow to get over with it. However,
 What I want to focus on at the moment are what Kin refers to as discovery, consistency, and delivery.
 
 ## Consistency
-I feel like it's important to set a level of consistency when designing the APIs. This makes it easier for others to consume them and even contribute to them. Currently, I have all of the [AsyncAPI documents in a GitHub repository](https://github.com/GamingAPI/definitions). It is also here that most of these consistencies must be enforced.
+I feel like it's important to set a level of consistency when designing the APIs. This makes it easier for others to consume them and even contribute to them. Currently, I have all of the [AsyncAPI documents in a GitHub repository](https://github.com/GamingAPI/definitions). It is also here that most of these consistencies must be enforced, you can read more about it in [Enforcing consistency guidelines](https://eventstack.tech/posts/enforcing-consistency-guidelines-part-1).
 
 I do have a few requirements regarding the consistency guidelines though.
 1. It MUST be executable locally on the developer's machine, so you don't have to wait to check whether your changes will go through the CI.
