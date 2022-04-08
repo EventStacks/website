@@ -33,16 +33,16 @@ I have heard of a couple of real-world scenarios, where consistency guidelines h
 Why would you go through all the trouble of setting the guidelines if you have no intention of enforcing them? Because if the users are not given an error while making the change, it is bound to not be compliant with the guidelines. Especially if you have multiple people working on the documents.
 
 ### Spectral
-The linting tool I will utilize is called [Spectral](https://meta.stoplight.io/docs/spectral). If you have not heard about Spectral, it is used to lint JSON or YAML files, meaning it supports AsyncAPI as well as other formats such as OpenAPI documents.
+The linting tool I will utilize is called [Spectral](https://meta.stoplight.io/docs/spectral) which is an Open source tool by [Stoplight](https://stoplight.io/open-source/spectral/). If you have not heard about Spectral, it is used to lint JSON or YAML files, meaning it supports AsyncAPI as well as other formats such as OpenAPI documents.
 
-To understand spectral you need to know about [3 concepts](https://meta.stoplight.io/docs/spectral/ZG9jOjYyMDc0Mg-concepts): **rulesets**, **rules** and **functions**.
+To understand Spectral you need to know about [3 concepts](https://meta.stoplight.io/docs/spectral/ZG9jOjYyMDc0Mg-concepts): **rulesets**, **rules** and **functions**.
 
 - **Rulesets** act as a container for **rules** and **functions**, this is what we will contain all the rules for ensuring the consistency guidelines are checked.
 - **Rules** filter your object down to a set of target values and specify the function that is used to evaluate those values. Each consistency guideline will get either one or multiple rules the AsyncAPI document must comply with.
 - **Functions** accept a value and return issues if the value is incorrect. Sometimes the built-in functions given by Spectral is not enough, as you will see in part 2.
 
 ### Getting started
-To get started I want to create my own ruleset and place the rules within a `.spectral.yml` file. The full file can be found in the [spectral directory](https://github.com/GamingAPI/definitions/tree/main/spectral).
+To get started I want to create my own ruleset and place it within a `.spectral.yml` file. The full ruleset can be found in the [spectral directory](https://github.com/GamingAPI/definitions/tree/main/spectral).
 
 To start with the ruleset should extend the built-in AsyncAPI ruleset (so we can leverage already existing rules), but keep them disabled as a default. This means each rule can be explicitly enabled based on what is needed. 
 
@@ -53,10 +53,10 @@ rules:
   ...
 `}</CodeBlock>
 
-Now it's time to go through each of the consistency guidelines and match each up with a spectral rule.
+Now it's time to go through each of the consistency guidelines and match each up with a Spectral rule.
 
 ### Rules
-Each consistency guideline is then matched against one or more Spectral rules. The majority of the rules are explained in [part 2](/posts/enforcing-consistency-guidelines-part-2).
+Each consistency guideline is then matched against one or more Spectral rules. The majority of the rules are explained in [part 2](/posts/enforcing-consistency-guidelines-part-2) as it require both custom rules and functions.
 
 #### Enforce API meta information
 > MUST contain API meta information [218].
@@ -119,6 +119,6 @@ jobs:
 
 ### Next
 
-Next up is [part 2](/posts/enforcing-consistency-guidelines-part-2). 
+Next up is [part 2](/posts/enforcing-consistency-guidelines-part-2) which dives into the custom rules and functions to enforce the consistency guidelines. 
 
 > Photo by <a href="https://unsplash.com/@canegridere?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Can Eğridere</a> on <a href="https://unsplash.com/s/photos/building-blocks?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>

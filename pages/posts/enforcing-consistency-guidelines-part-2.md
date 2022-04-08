@@ -17,7 +17,7 @@ authors:
 excerpt: "Continuing, part 2 focuses on advanced Spectral rules and functions to enforce the GamingAPI consistency guidelines."
 ---
 
-Part 2 clarifies the more advanced Spectral rules for enforcing the [consistency governance guidelines](/posts/getting-started-with-governance#consistency). For a better introduction into spectral and the setup please [checkout part 1 of enforcing consistency guidelines](/posts/enforcing-consistency-guidelines-part-1).
+Part 2 clarifies the more advanced Spectral rules for enforcing the [consistency governance guidelines](/posts/getting-started-with-governance#consistency). For a better introduction into Spectral and the setup please [checkout part 1 of enforcing consistency guidelines](/posts/enforcing-consistency-guidelines-part-1).
 
 I have suggested including each of the custom rules into the built-in AsyncAPI ruleset which is linked to at the end of each. If you also would like to see them added, please go to the corresponding issue voice it :+1:
 
@@ -253,7 +253,7 @@ export default (jsonObject, _, { path }) => {
 
 The rest of the consistency guidelines are not possible to enforce by Spectral because it is not about the AsyncAPI document itself, but the processes and documentation around it.
 
-I think spectral is perfect for enforcing consistency for AsyncAPI documents. I am looking forward to having a more comprehensive standard ruleset, which will make it easier for everyone to use. Because it does take some time to learn how to `target` rules and how and what functions to `then` apply. 
+I think Spectral is perfect for enforcing consistency for AsyncAPI documents. I am looking forward to having a more comprehensive standard ruleset, which will make it easier for everyone to use. Because it does take some time to learn how to `target` rules and how and what functions to `then` apply. 
 
 > Photo by <a href="https://unsplash.com/@lh1me?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">HONG LIN</a> on <a href="https://unsplash.com/s/photos/lego-building?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
