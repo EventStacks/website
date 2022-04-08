@@ -78,7 +78,7 @@ export default function PostPage() {
                 GamingAPI
               </h3>
               <p className="mt-3 text-base leading-6 text-gray-500">
-                <TextTruncate element="span" line={4} text="Enabling everyone to easily interact with game servers through AsyncAPI as the backbone. When AsyncAPI is used as a single source of truth you get amazing documentation, segregation of messages, code generation, versioning, ..., all in one bucket." />
+                <TextTruncate element="span" line={5} text="Enabling everyone to easily interact with game servers through AsyncAPI as the backbone. When AsyncAPI is used as a single source of truth you get amazing documentation, segregation of messages, code generation, versioning, ..., all in one bucket." />
               </p>
               <div className="grid grid-cols-2 gap-1 mt-15">
                 <div className="col-span-1 bg-white p-6 justify-between">
