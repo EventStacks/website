@@ -31,7 +31,7 @@
 } */
 export default function AsyncAPILogo({ className, style }) {
   return (
-    <svg className={className} width="1000" height="500" viewBox="0 0 165 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} style={style} viewBox="0 0 165 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 
       <defs>
         <linearGradient id="gradient1" x1="33.0317" y1="3.3661" x2="4.57364" y2="32.1761" gradientUnits="userSpaceOnUse">

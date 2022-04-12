@@ -21,11 +21,7 @@ export default function PostPage() {
         </Container>
         <div className="grid grid-cols-1 gap-y-4">
           <div className="mt-12 grid gap-5 lg:grid-cols-12 lg:max-w-none">
-            <div className="h-60 lg:col-span-6 sm:col-span-12 object-cover">
-              <center>
-                <LogoAsyncAPI className={"h-60 w-auto mt-0.5"}/>
-              </center>
-            </div>
+            <LogoAsyncAPI style={{ width: "100%" }} className={"h-60 lg:col-span-6 sm:col-span-12 object-cover"} />
             <div className="lg:col-span-6 sm:col-span-12 bg-white p-6 justify-between">
               <h3 className="mt-2 text-xl leading-7 font-semibold text-gray-900">
                 AsyncAPI
