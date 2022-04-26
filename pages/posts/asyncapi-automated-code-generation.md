@@ -156,3 +156,7 @@ jobs:
           body: ${{env.commit_message}}. Library require a new patch version change.
 
 ```
+
+
+Resources:
+- https://arinco.com.au/blog/github-actions-share-environment-variables-across-workflows/
