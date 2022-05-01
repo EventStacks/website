@@ -16,7 +16,33 @@ excerpt: "So what is the setup that enables interactions with game servers by ju
 
 Up until now I have not really put my thoughts of the architecture of GamingAPI into writing. This post should clear that up.
 
-## The Setup
+## The target segment
+
+When it comes to hosting game servers, game companies generally have two approaches they can take (or a mixture of the two). 
+
+The first is the game company themselves host the game servers. For some game companies this means utilize cloud technologies such as [Google cloud gaming](https://cloud.google.com/solutions/gaming) or [AWS Amazon GameSparks](https://aws.amazon.com/gamesparks/).
+
+
+The second one is that game companies let the public host them in any way they want. Simply releasing the game server executables would enable this. 
+
+This is who GamingAPI targets, the games which has public game server executables that can be hooked into.
+
+## The ultimate goal
+I want anyone to be able to easily run their own game server and interacting with it through 2 easy steps **anyone** can do. 
+
+First, you run the game server, arguable the easiest way to achieve this is by utilizing docker. More specifically, it's simply pairing the game server executables with the GamingAPI library.
+
+```bash
+docker run -d gamingapi/rust
+```
+
+Next, you interact with it through your preferred programming language.
+
+```ts
+import {} from 'gamingapi/rust'
+```
+
+## The Architecture
 <img src="/img/posts/gamingapi-architcture/simple-overview.webp"/>
 
 For each game there are primarily (but not necessarily) 2 APIs defined. 
