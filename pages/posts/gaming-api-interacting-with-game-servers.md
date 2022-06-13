@@ -1,6 +1,6 @@
 ---
 title: "Interacting with game servers, the basic"
-date: 2022-05-04T16:00:00+00:00
+date: 2022-06-13T16:00:00+00:00
 type: 
   - Communication
 tags:
@@ -12,11 +12,10 @@ authors:
   - name: Jonas Lagoni
     photo: /img/avatars/jonaslagoni.webp
     link: https://github.com/jonaslagoni
-excerpt: "So what is the setup that enables interactions with game servers by just installing a library?"
+excerpt: "Wondering how you can create a setup that enables interactions with game servers by just installing a library? This blog post answers that question on a high abstraction level."
 ---
 
-Up until now, I have not put my thoughts on how the GamingAPI setup works in the broad sense. This post should clear that up.
-
+Wondering how you can create a setup that enables interactions with game servers by just installing a library? This blog post answers that question on a high abstraction level.
 ## The Target Segment
 
 When it comes to hosting game servers, game companies generally have two approaches they can take (or a mixture of the two). 
