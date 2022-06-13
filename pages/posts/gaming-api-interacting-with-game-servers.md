@@ -42,7 +42,7 @@ import {client} from 'gamingapi/rust';
 
 client.connect();
 client.onServerStarted((event) => {
-  console.log(`Rust server ${event.serverId} just started`});
+  console.log(`Rust server ${event.serverId} just started`);
 });
 ```
 
