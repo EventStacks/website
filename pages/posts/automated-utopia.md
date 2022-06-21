@@ -70,7 +70,7 @@ Most likely, many more unanswered questions emerge as the setup progresses, but 
 
 To better explain the setup, I am gonna split it up into multiple parts to keep the scope as minimal as possible as it get's rather hairy at times. Most likely the split will look like the following:
 
-1. Continuous code generation - Versioning
+1. [Continuous code generation - Versioning](/posts/automated-utopia-versioning)
 1. Continuous code generation - TypeScript libraries
 1. Continuous code generation - .NET libraries
 1. Continuous code generation - Automatically set up new libraries and APIs
