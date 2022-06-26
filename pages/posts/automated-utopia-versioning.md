@@ -1,6 +1,6 @@
 ---
 title: "Continuous code generation - Versioning"
-date: 2022-06-21T17:00:00+00:00
+date: 2022-06-21T15:30:00+00:00
 type: 
   - Engineering
 tags:
@@ -27,12 +27,12 @@ As part of achieving continuous code generation, one of the core issues is how t
 
 ## The Idea
 
-To answer this conundrum, we must first figure out what version changes affect the generated library. The way I see it, it comes down to two version changes.  The version change of the API, and the code template since the last generation. 
+To answer this conundrum, we must first figure out what version changes affect the generated library. The way I see it, it comes down to two version changes. The version change of the API, and the code template since the last generation. 
 
 However for us to use and trust those version changes, 2 invariants must hold:
 
 1. The API version MUST [accurately use `semver` when making changes](https://semver.org/#semantic-versioning-specification-semver).
-1. The code template version (which the library is generated from) MUST accurately use `semver` when making changes.
+1. The code template version (from which the library is generated) MUST accurately use `semver` when making changes.
 
 If any of these two invariants are broken, it means that the generated library will perform a version change, unfitting for the changes it introduces. Most likely this will be a breaking change disguised as a feature change, which means users of the library cannot update their dependency without potentially breaking their code. 
 
@@ -40,14 +40,17 @@ Many find [semver tricky to pull off correctly](https://blog.thoughtspile.tech/2
 
 For the first invariant, we already have a [setup for how the AsyncAPI documents are gonna perform version changes](/posts/asyncapi-versioning-in-practice), and in the future, [AsyncAPI Diff](https://github.com/asyncapi/diff) will help ensure breaking changes cannot happen without the appropriate conventional commit.
 
-Regarding the code template, the only way I see is to create integration tests and ensure they are tested on each change. This should be sufficient enough for most cases.
+Regarding the code template, the only way I see is to create integration tests and ensure they are tested on each change. This should be sufficient enough for most cases, definitely need to do more in this area.
 
-So now that the invariants are taken care of, how do we manage these version changes in practice?
+Now that we know the invariants, how do we manage these version changes in practice?
 
 ## The generation code
+
+Managing these version changes in practice actually is split up into a few steps, this post will focus on the generation phase, which figures out what version change to do, and regenerates the library.
+
 To generate the libraries, we need some kind of code that we can execute, not only by the CI but also locally for debugging, when things don't go as planned. Cause that happens at times, especially when it's mostly trial and error to find a fitting solution.
 
-The general steps I follow regardless of programming language is:
+The general steps I follow regardless of programming language are:
 
 <CodeBlock caption="The steps to follow to generate the library over and over, while handling versions." language="markdown">
 {`\# Find the versions the library was last generated from
@@ -60,8 +63,7 @@ The general steps I follow regardless of programming language is:
   \# Save the versions of the current code template and the API document for next time
 `}</CodeBlock>
 
-
-In my case, I decided to write this code as a bash script, but in theory, this could be anything language that fits your use case. I also think I am going to put all of this into a GitHub action or something similar :thinking: To make it easier to integrate into your setup.
+In my case, I decided to write this code as a bash script (kinda regret it, but here we are :laughing:), but in theory, this could be anything language that fits your use case. I also think I am going to put all of this into a GitHub action or something similar :thinking: To make it easier to integrate into any setup.
 
 But yea, let's break down how it's built with bash.
 
@@ -71,7 +73,6 @@ Before jumping into the specifics, the script has specific sections that change 
 You can see the full scripts here:
 - [TypeScript generate setup](https://github.com/GamingAPI/rust-ts-public-api/blob/main/generate.sh)
 - [C#/.NET generate setup](https://github.com/GamingAPI/rust-csharp-public-api/blob/main/generate.sh)
-
 
 ### Find the versions the library was last generated from
 The way I choose to handle them is through a simple JSON file, which contains the API and the template version that the library was generated from. This will look like the following and placed in the root of the repository:
@@ -108,7 +109,7 @@ This will be part of the next two parts of the series.
 template_current_version=$(curl -sL https://raw.githubusercontent.com/$\{template_to_use\}/master/package.json | jq -r '.version' | sed 's/v//')
 `}</CodeBlock>
 
-Since the templates I use are all open-sourced, I can access the raw `package.json` file to read the current version. For example, here I am using a fork of the official AsyncAPI template for .NET NATS. The reason I am using a fork instead of the official is that I have quite a few changes that are needed so it gives you a bit more flexibility ([#260](https://github.com/asyncapi/dotnet-nats-template/pull/260), [#261](https://github.com/asyncapi/dotnet-nats-template/pull/261), [#262](https://github.com/asyncapi/dotnet-nats-template/pull/262), [#265](https://github.com/asyncapi/dotnet-nats-template/pull/265) and [#266](https://github.com/asyncapi/dotnet-nats-template/pull/266)).
+Since the templates I use are all open-sourced, I can access the raw `package.json` file to read the current version. For example, here I am using a fork of the official AsyncAPI template for .NET NATS. The reason I am using a fork instead of the official is that I have quite a few changes that are needed so it gives you a bit more flexibility ([#260](https://github.com/asyncapi/dotnet-nats-template/pull/260), [#261](https://github.com/asyncapi/dotnet-nats-template/pull/261), [#262](https://github.com/asyncapi/dotnet-nats-template/pull/262), [#265](https://github.com/asyncapi/dotnet-nats-template/pull/265), [#266](https://github.com/asyncapi/dotnet-nats-template/pull/266) and [#268](https://github.com/asyncapi/dotnet-nats-template/pull/268)).
 
 For the AsyncAPI documents, I am going to utilize the similar call as above, where I access the public bundled AsyncAPI document ([read more about why I use bundled documents here](/posts/reusability-causing-problems)). For the AsyncAPI documents, they are also all open-sourced, which means we can clone the repository with the documents and read the appropriate document.
 
@@ -191,6 +192,8 @@ fi
 
 It looks like much, but that's just bash for you, either it's easy to read and fill a lot of lines or short and unreadable :smile: 
 
+For both the template and AsyncAPI document version we find out if any major, minor or patch version change is required. It also associate a commit message with details on what triggered the change. For this case just a simple sentence, but could be extended to more complex information, such as changelog etc.
+
 ### Find out if any version changes occurred and if so
 Afterward it is as easy as checking if we need to do one of the three changes.
 
@@ -203,7 +206,7 @@ fi
 ### Remove all the files that are not related to the continuous code generation setup 
 The reason why we need to remove the generated code is that between template versions, new files might be introduced or removed. Simply re-generating without removing previous code could leave unintended code laying around.
 
-So since we cannot control what the template generates, we can control what the continuous code generation introduces. Therefore by filtering everything we know we introduced, we can remove the rest.
+So since we cannot control what the template generates, we can control what the continuous code generation introduces. Therefore by filtering everything we know we introduced, and remove the rest.
 
 <CodeBlock caption="Removing all the previous generated files to ensure there are no unintended files present." language="bash">
 {`\# Remove previous generated files to ensure clean slate
@@ -221,8 +224,17 @@ then
   npm install -g @asyncapi/generator
 fi
 \# Generating new code from the AsyncAPI document
-ag --force-write --output ./ $\{url_to_asyncapi_document\} https://github.com/jonaslagoni/dotnet-nats-template -p version="$library_last_version" -p targetFramework="netstandard2.0;netstandard2.1;net461" -p repositoryUrl="https://github.
-com/GamingAPI/rust-csharp-game-api.git" -p projectName="$\{library_name\}"
+  ag --force-write \\
+    --output ./ \\
+    $\{url_to_asyncapi_document\} \\
+    https://github.com/$\{template_to_use\} \\
+    -p version="$\{library_last_version\}" \\
+     -p targetFramework="netstandard2.0;netstandard2.1;net461" \\
+     -p repositoryUrl="$\{repository_url\}" \\
+     -p projectName="$\{libary_name\}" \\
+     -p packageVersion="$\{library_last_version\}" \\
+     -p assemblyVersion="$\{library_last_version\}.0" \\
+     -p fileVersion="$\{library_last_version\}.0"
 `}</CodeBlock>
 
 As each template has specific parameters this example shows how it uses the dotnet-nats-template with the specific parameters.
