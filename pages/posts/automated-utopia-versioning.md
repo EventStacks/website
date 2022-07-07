@@ -19,7 +19,7 @@ excerpt: "As part of achieving continuous code generation, one of the core issue
 
 1. [Continuous code generation - Automated Utopia](/posts/automated-utopia)
 1. **Continuous code generation - Versioning**
-1. Continuous code generation - TypeScript libraries
+1. [Continuous code generation - TypeScript libraries](/posts/automated-utopia-typescript)
 1. Continuous code generation - .NET libraries
 1. Continuous code generation - Automatically set up new libraries and APIs
 
@@ -254,6 +254,6 @@ In theory, you could overwrite the `configs.json` file without using `jq`, but i
 
 With the generation process done, it's time to tie it together with the specifics of the programming languages as each has specific needs.
 
-Next up is the specific setup for TypeScript that contains the specifics how a TypeScript library can be auto updated, released and customized.
+Next up is the [specific setup for TypeScript](/posts/automated-utopia-typescript) that contains the specifics how a TypeScript library can be auto updated, released and customized.
 
 > Photo by <a href="https://unsplash.com/@iswanto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Iswanto Arif</a> on <a href="https://unsplash.com/s/photos/beach-sitting?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
