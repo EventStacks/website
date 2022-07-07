@@ -139,12 +139,12 @@ minor_version_change="false"
 patch_version_change="false"
 commit_message=""
 \# Split the last used template version by '.' to split it up into 'major.minor.fix'
-semver_template_last_version=$\{template_last_version//./\}
+semver_template_last_version=( $\{template_last_version//./ \} )
 major_template_last_version=$\{semver_template_last_version[0]\}
 minor_template_last_version=$\{semver_template_last_version[1]\}
 patch_template_last_version=$\{semver_template_last_version[2]\}
 \# Split the current template version by '.' to split it up into 'major.minor.fix'
-semver_template_current_version=$\{template_current_version//./ \}
+semver_template_current_version=( $\{template_current_version//./ \} )
 major_template_current_version=$\{semver_template_current_version[0]\}
 minor_template_current_version=$\{semver_template_current_version[1]\}
 patch_template_current_version=$\{semver_template_current_version[2]\}
@@ -152,12 +152,12 @@ if [[ $major_template_current_version > $major_template_last_version ]]; then ma
 if [[ $minor_template_current_version > $minor_template_last_version ]]; then minor_template_change="true"; else minor_template_change="false"; fi
 if [[ $patch_template_current_version > $patch_template_last_version ]]; then patch_template_change="true"; else patch_template_change="false"; fi
 \# Split the last used AsyncAPI document version by '.' to split it up into 'major.minor.fix'
-semver_document_last_version=$\{document_last_version//./\}
+semver_document_last_version=( $\{document_last_version//./ \} )
 major_document_last_version=$\{semver_document_last_version[0]\}
 minor_document_last_version=$\{semver_document_last_version[1]\}
 patch_document_last_version=$\{semver_document_last_version[2]\}
 \# Split the current AsyncAPI document version by '.' to split it up into 'major.minor.fix'
-semver_document_current_version=$\{document_current_version//./\}
+semver_document_current_version=( $\{document_current_version//./ \} )
 major_document_current_version=$\{semver_document_current_version[0]\}
 minor_document_current_version=$\{semver_document_current_version[1]\}
 patch_document_current_version=$\{semver_document_current_version[2]\}
@@ -165,26 +165,26 @@ if [[ $major_document_current_version > $major_document_last_version ]]; then ma
 if [[ $minor_document_current_version > $minor_document_last_version ]]; then minor_document_change="true"; else minor_document_change="false"; fi
 if [[ $patch_document_current_version > $patch_document_last_version ]]; then patch_document_change="true"; else patch_document_change="false"; fi
 \# Set the commit messages that details what changed
-if (($major_template_change == 'true')); then
+if [ $major_template_change == "true" ]; then
   commit_message="Template have changed to a new major version."
-elif (($minor_template_change == 'true')); then
+elif [ $minor_template_change == "true" ]; then
   commit_message="Template have changed to a new minor version."
-elif (($patch_template_change == 'true')); then
+elif [ $patch_template_change == "true" ]; then
   commit_message="Template have changed to a new patch version."
 fi
-if (($major_document_change == 'true')); then
+if [ $major_document_change == "true" ]; then
   commit_message="$\{commit_message\}AsyncAPI document have changed to a new major version."
-elif (($minor_document_change == 'true')); then
+elif [ $minor_document_change == "true" ]; then
   commit_message="$\{commit_message\}AsyncAPI document have changed to a new minor version."
-elif (($patch_document_change == 'true')); then
+elif [ $patch_document_change == "true" ]; then
   commit_message="$\{commit_message\}AsyncAPI document have changed to a new patch version."
 fi
 \# Always use the most aggressive version change, and only do one type of version change
-if (($major_template_change == 'true' || $major_document_change == 'true')); then
+if [ $major_template_change == "true" ] || [ $major_document_change == "true" ]; then
   major_version_change="true"
-elif (($minor_template_change == 'true' || $minor_document_change == 'true')); then
+elif [ $minor_template_change == "true" ] || [ $minor_document_change == "true" ]; then
   minor_version_change="true"
-elif (($patch_template_change == 'true' || $patch_document_change == 'true')); then
+elif [ $patch_template_change == "true" ] || [ $patch_document_change == "true" ]; then
   patch_version_change="true"
 fi
 `}</CodeBlock>
@@ -198,7 +198,7 @@ For both the template and AsyncAPI document version we find out if any major, mi
 Afterward it is as easy as checking if we need to do one of the three changes.
 
 <CodeBlock caption="Checking if it's time to do a version change or not" language="bash">
-{`if $major_version_change == 'true' || $minor_version_change == 'true' || $patch_version_change == 'true'; then
+{`if [ $major_version_change == "true" ] || [ $minor_version_change == "true" ] || [ $patch_version_change == "true" ]; then
   \# Time to do a version change
 fi
 `}</CodeBlock>
