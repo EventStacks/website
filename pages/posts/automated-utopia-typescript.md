@@ -1,5 +1,5 @@
 ---
-title: "Continuous code generation - TypeScript"
+title: "Continuous code generation - TypeScript libraries"
 date: 2022-07-08T17:00:00+00:00
 type: 
   - Engineering
@@ -14,7 +14,7 @@ authors:
   - name: Jonas Lagoni
     photo: /img/avatars/jonaslagoni.webp
     link: https://github.com/jonaslagoni
-excerpt: "Finally time to tie the last two continuous code generation posts together for TypeScript libraries detail how it works."
+excerpt: "Finally time to tie the last two posts together to explain how to achieve continuous code generation for TypeScript libraries"
 ---
 
 1. [Continuous code generation - Automated Utopia](/posts/automated-utopia)
