@@ -23,7 +23,7 @@ excerpt: "Finally time to tie the last two continuous code generation posts toge
 1. Continuous code generation - .NET libraries
 1. Continuous code generation - Automatically set up new libraries and APIs
 
-First time putting a video together since, forever, so don't judge too harshly. No idea why it's so matrix-like at times, and no idea how to fix it, so it is what it is :smile:
+*First time putting a video together since, forever, so don't judge too harshly. No idea why it's so matrix-like at times, and no idea how to fix it, so it is what it is* :smile:
 <video controls>
   <source src="/media/typescript-auto-generation.webm"
           type="video/webm"/>
@@ -51,7 +51,7 @@ As part of the [generation script](/posts/automated-utopia-versioning#the-genera
 library_last_version=$(cat ./package.json | jq -r '.version')
 ```
 
-### Auto generate
+### Auto generate the library 
 Next is to trigger the code generation when the API receives a version change.
 
 To achieve this I choose to add a generation workflow in the API library and one where the AsyncAPI documents are located, to remotely trigger the generation workflow. This is not the only way to achieve it, but it was the one I found must suiting in this case.
@@ -131,7 +131,7 @@ jobs:
 
 The only thing we cannot trigger upon is when the code template receives a change. You could fall back to a cronjob which could trigger the generation workflow at some specific time, so it's semi-automatic. Maybe the [AsyncAPI server API](https://github.com/asyncapi/server-api/) could come to the rescue? :thinking:
 
-## Release new code
+## Release the new library
 
 This setup is a page out of the AsyncAPI setup, where I reuse the exact setup that [Lukasz](https://github.com/derberg) authored. If you want a more in-depth description of the setup, you can watch the [Let's talk about contributing - CI/CD at AsyncAPI](https://www.youtube.com/watch?v=DsQfmlc3Ubo), otherwise, I will make sure to recap the major parts below.
 
