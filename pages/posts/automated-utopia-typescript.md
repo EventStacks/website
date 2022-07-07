@@ -135,9 +135,9 @@ The only thing we cannot trigger upon is when the code template receives a chang
 
 This setup is a page out of the AsyncAPI setup, where I reuse the exact setup that [Lukasz](https://github.com/derberg) authored. If you want a more in-depth description of the setup, you can watch the [Let's talk about contributing - CI/CD at AsyncAPI](https://www.youtube.com/watch?v=DsQfmlc3Ubo), otherwise, I will make sure to recap the major parts below.
 
-It has two core concepts, the package.json file has [specific release scripts](https://github.com/asyncapi/modelina/blob/master/package.json#L84-L88) and [release configurations](https://github.com/asyncapi/modelina/blob/8e6fe34b8870a2aa758697b0a341736b2ef30658/package.json#L93) which is being triggered by a [release workflow](https://github.com/asyncapi/modelina/blob/8e6fe34b8870a2aa758697b0a341736b2ef30658/.github/workflows/if-nodejs-release.yml#L52) that ensures everything is released based on the conventional commits it finds since the last release. [Similar to what the setup is for the AsyncAPI files](/posts/asyncapi-versioning-in-practice). Once released we bump the version of the library.
+It has two core concepts, the package.json file has [specific release scripts](https://github.com/asyncapi/modelina/blob/master/package.json#L84-L88) and [release configurations](https://github.com/asyncapi/modelina/blob/8e6fe34b8870a2aa758697b0a341736b2ef30658/package.json#L93) which is being triggered by a [release workflow](https://github.com/asyncapi/modelina/blob/8e6fe34b8870a2aa758697b0a341736b2ef30658/.github/workflows/if-nodejs-release.yml#L52) ([for the library it's this workflow](https://github.com/GamingAPI/rust-ts-public-api/blob/main/.github/workflows/release.yml)) that ensures everything is released based on the conventional commits it finds since the last release. [Similar to what the setup is for the AsyncAPI files](/posts/asyncapi-versioning-in-practice). Once released we bump the version of the library through [this workflow](https://github.com/GamingAPI/rust-ts-public-api/blob/main/.github/workflows/bump-release.yml).
 
-The first dilemma is that the template I am using is generating the `package.json` file which contains the minimum to make it usable (which is expected) - such as dependencies and basic scripts. It does not contain any specific scripts or developer dependencies for supporting the continuous release.
+Turning towards our code generation, the first dilemma is that the code template is generating a full project, meaning it already [generate a `package.json` file](https://github.com/asyncapi/ts-nats-template/blob/d8343874f0c86a5b3b344172a6b209922c8d464e/template/package.json.js#L6). This means it does not contain our needed release scripts or dependencies for supporting the continuous release.
 
 Luckily it's JSON, so we can `jq` once again to make it contain what we need.
 
@@ -207,6 +207,7 @@ jq -s '.[0] * .[1]' ./package.json ./custom_package.json > ./package_tmp.json
 rm ./package.json
 mv ./package_tmp.json ./package.json
 ```
+
 
 ## Some reflection
 
