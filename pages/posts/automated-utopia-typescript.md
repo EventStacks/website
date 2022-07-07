@@ -129,7 +129,7 @@ jobs:
       - # Update ... public game API library
 ```
 
-The only thing we cannot trigger upon is when the code template receives a change. You could fall back to a cronjob which could trigger the generation workflow at some specific time, so it's semi-automatic. Maybe the [AsyncAPI server API](https://github.com/asyncapi/server-api/) could come to the rescue? :thinking:
+The only thing we cannot trigger upon is when the code template receives a change. You could fall back to a cronjob which could trigger the generation workflow at some specific time, so it's semi-automatic. 
 
 ## Release the new library
 
@@ -210,8 +210,12 @@ mv ./package_tmp.json ./package.json
 
 ## Some reflection
 
-While that finishes the setup for TypeScript libraries, it's far from over - cause this is quite a complex setup and quite a few steps to take to achieve it. I still think how all of this can be reduced to a single step... Maybe it's not necessary to have the library in a repository, but rather just releasing it 
+While that finishes the setup for TypeScript libraries, it's far from over - cause this is quite a complex setup and quite a few steps to take to achieve it. I still think how all of this can be reduced to a single step... Maybe it's not necessary to have the library in a repository, but rather just releasing it through a library. But I need some more experience in how different languages do things to put something together.
 
-Furthermore, it's hard for the consumer of the library to know exactly which versions represent which API versions. So some kind of compatibility matrix would be great to have... Not sure how that would be achievable :thinking:
+It is hard for the consumer of the library to know exactly which versions represent which API versions. So some kind of compatibility matrix would be great to have... Not sure how that would be achievable :thinking:
+
+The same goes for the commit messages, could be better to describe exactly which API changes they reflect. As you can see on the video, it only describes what triggered the change, either the template or the AsyncAPI document, which is not very informative - but maybe they don't need to be :thinking:
+
+Gotta say, this automated utopia really pushes my skills to the limits, but what a learning experience.
 
 > Photo by <a href="https://unsplash.com/@iswanto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Iswanto Arif</a> on <a href="https://unsplash.com/s/photos/beach-sitting?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
