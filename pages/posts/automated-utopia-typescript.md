@@ -107,7 +107,6 @@ jobs:
 To remotely trigger the code generation from where the AsyncAPI documents are located, we can then use the GitHub action `benc-uk/workflow-dispatch` to trigger the workflow remotely. This is run whenever the bundled AsyncAPI document change. This is my lazy way of detecting version changes, [as the AsyncAPI documents are bundled on each release](/posts/reusability-causing-problems).
 
 ```yml
----
 name: Trigger remote code generation for Rust public API
 on: 
   workflow_dispatch: 
