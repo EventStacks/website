@@ -18,7 +18,7 @@ featured: true
 This is meant as an update on what happened in the AsyncAPI tooling landscape for the past couple of months. Why `1` you might ask? Well, the previous times I made an update statement was through gist which I don't particularly like for giving updates. So this switches it up! If you are looking for the latest updates in other areas, check them out here:
 - [Maciej](https://github.com/magicmatatjahu) have done an update about all the [EDA Design & Documentation tooling](https://gist.github.com/magicmatatjahu/a4bf587dc88b0d07adf7cb157a257c73)!
 - [Sergio](https://github.com/smoya) have done an update around the [AsyncAPI specification and parsers](https://gist.github.com/smoya/583eead247b4b66bf3e098fb63f2ac14)!
-- [Alejandra](https://github.com/alequetzalli) have done an update around the [AsyncAPI documentation](https://gist.github.com/alequetzalli/0d9cf3de4cc0d99b9891a645ed22c194)!
+- [Alejandra](https://github.com/alequetzalli) have done an update around the AsyncAPI documentation for [June](https://gist.github.com/alequetzalli/0d9cf3de4cc0d99b9891a645ed22c194) and [July](https://gist.github.com/alequetzalli/2ab9fa34c034b64cfc238d29e0feaf92)!
 
 I would love to know what you would like out of these updates, what gives you value when you are reading these updates? Anything from the other updates you found gave value this one missed out on? 
 
