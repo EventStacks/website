@@ -23,7 +23,7 @@ excerpt: "Time to introduce continous code generation for .NET libraries!"
 4. **Continuous code generation - .NET libraries**
 5. Continuous code generation - Automatically set up new libraries and APIs
 
-*I was lazy and did not end up recording how the .NET library got released, but this is for the TypeScript setup, which is 95% the same as for a .NET package* :smile:
+*I got a little lazy and did not end up recording how the .NET library got released, but this is for the TypeScript setup, which is 95% the same as for a .NET package* :smile:
 <video controls>
   <source src="/media/typescript-auto-generation.webm"
           type="video/webm"/>
