@@ -20,7 +20,7 @@ excerpt: "Finally time to tie the last two posts together to explain how to achi
 1. [Continuous code generation - Automated Utopia](/posts/automated-utopia)
 1. [Continuous code generation - Versioning](/posts/automated-utopia-versioning)
 1. **Continuous code generation - TypeScript libraries**
-1. Continuous code generation - .NET libraries
+1. [Continuous code generation - .NET libraries](/posts/automated-utopia-dotnet)
 1. Continuous code generation - Automatically set up new libraries and APIs
 
 *First time putting a video together since, forever, so don't judge too harshly. No idea why it's so matrix-like at times, and no idea how to fix it, so it is what it is* :smile:
@@ -51,10 +51,10 @@ As part of the [generation script](/posts/automated-utopia-versioning#the-genera
 library_last_version=$(cat ./package.json | jq -r '.version')
 ```
 
-### Auto generate the library 
+### Auto-generate the library 
 Next is to trigger the code generation when the API receives a version change.
 
-To achieve this I choose to add a generation workflow in the API library and one where the AsyncAPI documents are located, to remotely trigger the generation workflow. This is not the only way to achieve it, but it was the one I found must suiting in this case.
+To achieve this I choose to add a generation workflow in the API library and one where the AsyncAPI documents are located, to remotely trigger the generation workflow. This is not the only way to achieve it, but it was the one I found most suiting in this case.
 
 For the generation workflow, it's rather simple as all it does is execute the [`generate.sh` script](/posts/automated-utopia-versioning#the-bash-script), read the results of the generation process - and then create appropriate PR with the desired conventional commit. The workflow is then set to be triggered on [workflow dispatch](https://utensils.io/articles/trigger-github-actions-from-another-repo) which can be done remotely.
 
@@ -215,7 +215,5 @@ While that finishes the setup for TypeScript libraries, it's far from over - cau
 It is hard for the consumer of the library to know exactly which versions represent which API versions. So some kind of compatibility matrix would be great to have... Not sure how that would be achievable :thinking:
 
 The same goes for the commit messages, could be better to describe exactly which API changes they reflect. As you can see on the video, it only describes what triggered the change, either the template or the AsyncAPI document, which is not very informative - but maybe they don't need to be :thinking:
-
-Gotta say, this automated utopia really pushes my skills to the limits, but what a learning experience.
 
 > Photo by <a href="https://unsplash.com/@iswanto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Iswanto Arif</a> on <a href="https://unsplash.com/s/photos/beach-sitting?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>

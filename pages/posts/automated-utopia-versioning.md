@@ -20,7 +20,7 @@ excerpt: "As part of achieving continuous code generation, one of the core issue
 1. [Continuous code generation - Automated Utopia](/posts/automated-utopia)
 1. **Continuous code generation - Versioning**
 1. [Continuous code generation - TypeScript libraries](/posts/automated-utopia-typescript)
-1. Continuous code generation - .NET libraries
+1. [Continuous code generation - .NET libraries](/posts/automated-utopia-dotnet)
 1. Continuous code generation - Automatically set up new libraries and APIs
 
 As part of achieving continuous code generation, one of the core issues is how to do versioning for the generated libraries. More precisely, how do you ripple effect version changes accurately - and in a manner that avoids non-caught breaking changes?

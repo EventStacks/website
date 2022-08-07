@@ -72,7 +72,7 @@ To better explain the setup, I am gonna split it up into multiple parts to keep 
 
 1. [Continuous code generation - Versioning](/posts/automated-utopia-versioning)
 1. [Continuous code generation - TypeScript libraries](/posts/automated-utopia-typescript)
-1. Continuous code generation - .NET libraries
+1. [Continuous code generation - .NET libraries](/posts/automated-utopia-dotnet)
 1. Continuous code generation - Automatically set up new libraries and APIs
 
 As some last thoughts, I wonder if you need to keep the generated code in repositories... Maybe a tool would be able to continuously release new versions of the generated libraries without needing to reside in repositories :thinking: The more I think about it, the more I like the idea. Especially considering what is required to achieve this automation setup. 

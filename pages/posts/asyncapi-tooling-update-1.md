@@ -12,7 +12,6 @@ authors:
     link: https://github.com/jonaslagoni
     byline: AsyncAPI Maintainer
 excerpt: 'Are you wondering what changes have happened to the AsyncAPI tooling for the past months? Then look no further, here are the highlights and all of the changes that have happened!'
-featured: true
 ---
 
 This is meant as an update on what happened in the AsyncAPI tooling landscape for the past couple of months. Why `1` you might ask? Well, the previous times I made an update statement was through gist which I don't particularly like for giving updates. So this switches it up! If you are looking for the latest updates in other areas, check them out here:
