@@ -45,7 +45,7 @@ As the video shows, it's not quite fully automated, as I still need to manually 
 Because I choose to host (or at least that's how it came to be, as initially it was hosted on Gitlab) it on GitHub, many of the automation steps are for GitHub actions. However, it should be "rather easy" to translate it to another CI system as the building blocks and processes are there.
 
 ### Find the current version of the library
-As part of the [generation script](/posts/automated-utopia-versioning#the-generation-code), one step was to [find the current version of the library](/posts/automated-utopia-versioning#find-the-current-version-of-the-library) to know our starting point. For the .NET libraries this is "slightly" more tricky then for [TypeScript]().
+As part of the [generation script](/posts/automated-utopia-versioning#the-generation-code), one step was to [find the current version of the library](/posts/automated-utopia-versioning#find-the-current-version-of-the-library) to know our starting point. For the .NET libraries this is "slightly" more tricky then for [TypeScript](/posts/automated-utopia-typescript#generate-new-code).
 
 The reason is its XML :sweat_smile: I ended up using a [support library](https://github.com/tyleradams/json-toolkit) which of course needs to be installed beforehand. Next, the .NET project file is piped into the `xml-to-json` converter to read the current version through `jq`. I guess you could use the GitHub API to read the latest release and use the version therein, but that has drawbacks as well.
 
@@ -64,7 +64,9 @@ fi
 `}</CodeBlock>
 
 ### Auto-generate the library 
-Next is to trigger the code generation when the API definition receives a version change. To achieve this I choose to add a generation workflow in the API library and one where the AsyncAPI documents are located, to remotely trigger the generation workflow. This is not the only way to achieve it, but it was the one I found most suiting in this case.
+Next is to trigger the code generation when the API definition receives a version change. If you have read the [TypeScript setup](/posts/automated-utopia-typescript), this setup is pretty much the same.
+
+To achieve this I choose to add a generation workflow in the API library and one where the AsyncAPI documents are located, to remotely trigger the generation workflow. This is not the only way to achieve it, but it was the one I found most suiting in this case.
 
 For the generation workflow, it's rather simple as all it does is execute the [`generate.sh` script](/posts/automated-utopia-versioning#the-bash-script), read the results of the generation process - and then create appropriate PR with the desired conventional commit. The workflow is then set to be triggered on [workflow dispatch](https://utensils.io/articles/trigger-github-actions-from-another-repo) which can be done remotely.
 
