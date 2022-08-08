@@ -21,7 +21,7 @@ excerpt: "Finally time to tie the last two posts together to explain how to achi
 1. [Continuous code generation - Versioning](/posts/automated-utopia-versioning)
 1. **Continuous code generation - TypeScript libraries**
 1. [Continuous code generation - .NET libraries](/posts/automated-utopia-dotnet)
-1. Continuous code generation - Automatically set up new libraries and APIs
+1. [Continuous code generation - Automatically set up new libraries and APIs](/posts/automated-utopia-final)
 
 *First time putting a video together since, forever, so don't judge too harshly. No idea why it's so matrix-like at times, and no idea how to fix it, so it is what it is* :smile:
 <video controls>

@@ -21,7 +21,7 @@ excerpt: "Time to introduce continous code generation for .NET libraries!"
 2. [Continuous code generation - Versioning](/posts/automated-utopia-versioning)
 3. [Continuous code generation - TypeScript libraries](/posts/automated-utopia-typescript)
 4. **Continuous code generation - .NET libraries**
-5. Continuous code generation - Automatically set up new libraries and APIs
+5. [Continuous code generation - Automatically set up new libraries and APIs](/posts/automated-utopia-final)
 
 *I got a little lazy and did not end up recording how the .NET library got released, but this is for the TypeScript setup, which is 95% the same as for a .NET package* :smile:
 <video controls>
