@@ -11,7 +11,7 @@ authors:
     photo: /img/avatars/jonaslagoni.webp
     link: https://github.com/jonaslagoni
     byline: AsyncAPI Maintainer
-excerpt: 'Are you wondering what changes have happened to the AsyncAPI tooling? Look no further! Here are the highlights of the changes that have happened in weeks 30-32'
+excerpt: 'Are you wondering what changes have or are happning to the AsyncAPI tooling? Look no further! Here are the highlights of the changes that have happened in weeks 30-32'
 ---
 
 > This post bundles updates from the following official tools, but not limited to: [bundler](https://github.com/asyncapi/bundler), [chatbot](https://github.com/asyncapi/chatbot), [studio](https://github.com/asyncapi/studio), [diff](https://github.com/asyncapi/diff), [glee](https://github.com/asyncapi/glee), [create-glee-app](https://github.com/asyncapi/create-glee-app), [cli](https://github.com/asyncapi/cli), [optimizer](https://github.com/asyncapi/optimizer), [modelina](https://github.com/asyncapi/modelina), [generator](https://github.com/asyncapi/generator), [generator-react-sdk](https://github.com/asyncapi/generator-react-sdk), [java-template](https://github.com/asyncapi/java-template), [java-spring-cloud-stream-template](https://github.com/asyncapi/java-spring-cloud-stream-template), [java-spring-template](https://github.com/asyncapi/java-spring-template), [dotnet-nats-template](https://github.com/asyncapi/dotnet-nats-template) and [ts-nats-template](https://github.com/asyncapi/ts-nats-template).
