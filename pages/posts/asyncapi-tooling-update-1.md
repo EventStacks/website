@@ -1,5 +1,5 @@
 ---
-title: "AsyncAPI Tooling update - 1"
+title: "AsyncAPI tooling update - 1"
 date: 2022-07-29T18:00:00+01:00
 type: Communication
 tags:

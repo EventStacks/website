@@ -1,5 +1,5 @@
 ---
-title: "AsyncAPI Tooling update - Week 33"
+title: "AsyncAPI tooling update - Week 33"
 date: 2022-08-16T16:00:00+01:00
 type: Communication
 tags:
