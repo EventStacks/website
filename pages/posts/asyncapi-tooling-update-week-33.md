@@ -19,7 +19,7 @@ excerpt: 'Are you wondering what changes have happened to the AsyncAPI tooling? 
 You can find the last tooling update [here](/posts/asyncapi-tooling-update-1).
 
 ## Highlights
-These are some of the highlights of changes that have happened in the tools and what's to come!
+These are some of the highlights of changes that have happened in the tools and what's to come! Let me know what you wish to see from these updates, as I did not end up adding all [the individual commits as I did in the last update](/posts/asyncapi-tooling-update-1#full-changelog) but choose to only highlight certain features here now and to come. It of course does not cover all the changes, so I am trying to find a balance somewhere.
 
 ### Modelina
 
@@ -145,6 +145,5 @@ components:
             description: Email of the user`}</CodeBlock>
 
 ## To that end
-Let me know what you wish to see from these updates, as I did not end up adding all [the individual commits as I did in the last update](/posts/asyncapi-tooling-update-1#full-changelog) but choose to only highlight certain features here now and to come. It of course does not cover all the changes, so I am trying to find a balance somewhere.
 
 In the end, thank you to everyone who contributes to AsyncAPI in any way you can :purple_heart: If you also want to help out but don't know where to begin, then join the [#11_how-to-contribute](https://asyncapi.slack.com/archives/C02FK3YDPCL) channel on Slack so we can help you any way we can :muscle: 
