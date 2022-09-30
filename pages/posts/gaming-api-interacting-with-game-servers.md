@@ -79,5 +79,3 @@ This setup will be replicated for any game that will be supported. I am gonna st
 Next up is gonna be to set up the continuous code generation. I want the setup to not only autogenerate on API changes but also pack it with the correct version and release it.
 
 > Photo by <a href="https://unsplash.com/@glenncarstenspeters?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/s/photos/game-server?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  
-  
