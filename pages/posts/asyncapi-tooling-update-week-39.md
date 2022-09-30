@@ -35,7 +35,7 @@ Yesterday AsyncAPI 2.5 was released, and shortly after most of the tools were up
 You can take a look at [Vladimír Gorej](https://twitter.com/@vladimirgorej) [release notes to see the tools and which versions you need to upgrade to](https://www.asyncapi.com/blog/release-notes-2.5.0#tooling-support).
 
 ### CLI
-The [long awaited feature](https://github.com/asyncapi/cli/pull/221) to integrate the generator into the CLI has finally arrived! This means you from your favorite CLI tool can trigger code generation from any template.
+The [long awaited feature](https://github.com/asyncapi/cli/pull/221) from [Souvik](https://twitter.com/souvik_ns) to integrate the [generator](https://github.com/asyncapi/generator) into the CLI has finally arrived! This means you from your favorite CLI tool can trigger code generation from any template.
 
 ```
 USAGE
