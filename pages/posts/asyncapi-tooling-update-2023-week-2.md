@@ -209,7 +209,7 @@ public class Root
 
 ### NATS code templates
 
-The [NATS TypeScript code template](https://github.com/asyncapi/ts-nats-template) now support the JetStream operations publish, [fetch](https://github.com/nats-io/nats.deno/blob/main/jetstream.md#fetching-batch-of-messages), [push](https://github.com/nats-io/nats.deno/blob/main/jetstream.md#push-subscriptions), [pull](https://github.com/nats-io/nats.deno/blob/main/jetstream.md#requesting-a-single-message) and [pull subscribe](https://github.com/nats-io/nats.deno/blob/main/jetstream.md#pull-subscriptions). This means 4 new functions are generated per defined channel ([checkout this example](https://github.com/asyncapi/ts-nats-template/blob/master/examples/simple-subscribe/asyncapi-nats-client/src/index.ts#L169)). 
+The [NATS TypeScript code template](https://github.com/asyncapi/ts-nats-template) now support the JetStream operations publish, [fetch](https://github.com/nats-io/nats.deno/blob/main/jetstream.md#fetching-batch-of-messages), [push](https://github.com/nats-io/nats.deno/blob/main/jetstream.md#push-subscriptions), [pull](https://github.com/nats-io/nats.deno/blob/main/jetstream.md#requesting-a-single-message) and [pull subscribe](https://github.com/nats-io/nats.deno/blob/main/jetstream.md#pull-subscriptions). This means 5 new functions are generated per defined channel (checkout these two examples, [simple subscribe](https://github.com/asyncapi/ts-nats-template/blob/master/examples/simple-subscribe/asyncapi-nats-client/src/index.ts#L169) and [simple publish](https://github.com/asyncapi/ts-nats-template/blob/e7e85aa0487b82a8d180ccb90a72451d1382c6bb/examples/simple-publish/asyncapi-nats-client/src/index.ts#L151)). 
 
 ```ts
 ...
@@ -246,9 +246,9 @@ namespace Asyncapi.Nats.Client
 }
 ```
 
-The NATS .NET template is also one of the first code templates to support multiple serialization libraries, as it currently supports `Newtonsoft` and `system.text.json` because Modelina supports it, it's rather easy to dynamically switch between them (code for [system.text.json](https://github.com/asyncapi/dotnet-nats-template/blob/master/template/AsyncapiNatsClient/models/jsonModels.js) and [Newtonsoft](https://github.com/asyncapi/dotnet-nats-template/blob/master/template/AsyncapiNatsClient/models/newtonsoftModels.js)). 
+The NATS .NET template is also one of the first code templates to support multiple serialization libraries, as it currently supports `Newtonsoft` and `system.text.json`, it's rather easy to dynamically switch between them (see the template code for [system.text.json](https://github.com/asyncapi/dotnet-nats-template/blob/master/template/AsyncapiNatsClient/models/jsonModels.js) and [Newtonsoft](https://github.com/asyncapi/dotnet-nats-template/blob/master/template/AsyncapiNatsClient/models/newtonsoftModels.js)), because of the use of Modelina. 
 
-When using the [CLI](https://github.com/asyncapi/cli) you can choose with the parameter `serializationLibrary`.
+When using the [CLI](https://github.com/asyncapi/cli) you can choose between the two libraries by using the parameter `serializationLibrary`.
 
 ```bash
 asyncapi generate fromTemplate asyncapi.yaml @asyncapi/ts-nats-template --param serializationLibrary="newtonsoft | json"
