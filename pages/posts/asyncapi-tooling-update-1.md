@@ -218,4 +218,4 @@ Thank you to everyone who contributes to AsyncAPI in any way you can :purple_hea
 
 If you have worked on something or are working on something that you would like to be included in these updates, feel free to reach out on slack!
 
-> Photo by <a href="https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Markus Winkler</a> on <a href="https://unsplash.com/s/photos/update?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+> Photo by <a href="https://unsplash.com/@markuswinkler?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Markus Winkler</a> on <a href="https://unsplash.com/photos/cxoR55-bels?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
