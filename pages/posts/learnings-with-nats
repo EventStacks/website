@@ -1,0 +1,79 @@
+---
+title: "NATS and game servers"
+date: 2022-03-28T20:30:00+00:00
+type: Engineering
+tags:
+  - GamingAPI
+  - NATS
+  - Event Sourcing
+  - Docker compose
+  - Swarm
+cover: /img/posts/nats-setup.webp
+authors:
+  - name: Jonas Lagoni
+    photo: /img/avatars/jonaslagoni.webp
+    link: https://github.com/jonaslagoni
+excerpt: "Why NATS and how is it setup for GamingAPI?"
+---
+
+
+## Have a user for jetstream configuration
+
+After setting up the NATS server for decentralized JWT I still needed to setup the streams correctly for users of GamingAPI. But I could not figure out how I could setup the streams when there was no credentials to login to the account.
+
+Ended up being quite simple in a sense, just not sure how I want to do this long term. You need to have a user that has access to the admin subjects (
+https://docs.nats.io/reference/reference-protocols/nats_api_reference#admin-api) related to setup the stream, by default, if the user has no restrictions, they are able to setup these things.
+
+So for now it seems I will create an admin user for each account, and use that to setup the necessary streams. However, I dont quite like having an admin user for each account in GamingAPI, maybe it should just be temporary?
+
+## Setting up permissions for JetStream users
+
+Remember when setting up permissions for JetStream users to escape `$` so it become `\$` in the subject list, otherwise it will simply be ignored.
+```
+nsc add user --name event_viewer --allow-pub "$JS.API.>" --allow-sub "v0.rust.servers.>,_INBOX.>" --allow-pub-response
+```
+
+```
+nsc add user --name event_viewer --allow-pub "\$JS.API.>" --allow-sub "v0.rust.servers.>,_INBOX.>" --allow-pub-response
+```
+
+## Starting with JWT and
+
+## Multiline environment variables in Windows are sh**
+Ended up doing one-liners instead with the use of `\n` for newlines, as the newlines simply was ignored when I tried using them.
+```env
+# .env file
+NATS_AUTHENTICATION="-----BEGIN NATS USER JWT-----
+eyJ0eXAiOiJKV1QiLCJhbGciOiJlZDI1NTE5LW5rZXkifQ.eyJqdGkiOiI0T0hVUVlaVEE0SU1TMkUzR0tVSEFUNVpQM0JBNEtKNVFQVk1UMlpMQkw0WDJNTjJKSVJRIiwiaWF0IjoxNjczMTYwMTI3LCJpc3MiOiJBQk9OUEpWTkI3UzRZTFpKUTVUWkNZRzVKWkQ2T09CRFIyNlVUVzZUSFg3T1dDVVNFU1pSUkhGRiIsIm5hbWUiOiJldmVudF92aWV3ZXIiLCJzdWIiOiJVQUpEWUZYVFlQM0ZSWFJSVzZURDNMRFlFSzVLNklWSFJXV1RDSk1ZR1dLVTRFWU02TE1XNFFRRyIsIm5hdHMiOnsicHViIjp7ImFsbG93IjpbIi5BUEkuXHUwMDNlIl19LCJzdWIiOnsiYWxsb3ciOlsiX0lOQk9YLlx1MDAzZSIsInYwLnJ1c3Quc2VydmVycy5cdTAwM2UiXX0sInJlc3AiOnsibWF4IjoxLCJ0dGwiOjB9LCJzdWJzIjotMSwiZGF0YSI6LTEsInBheWxvYWQiOi0xLCJ0eXBlIjoidXNlciIsInZlcnNpb24iOjJ9fQ.0TPxUY_wJmIXLg3pWv7igF5VNZtN1EZI9ytBW91Q_09J4kUxb0d7xHjNJPV7EnVbXutOquJYUpivdZLkjU9FDA
+------END NATS USER JWT------
+
+************************* IMPORTANT *************************
+NKEY Seed printed below can be used to sign and prove identity.
+NKEYs are sensitive and should be treated as secrets.
+
+-----BEGIN USER NKEY SEED-----
+SUAFPT5X3FIDHDNJ6NIM62DKNLAOUES47F2UKSNQ7P3DANLADXRGDCMOAE
+------END USER NKEY SEED------
+
+*************************************************************
+"
+```
+
+Which instead became this:
+```env
+# .env file
+NATS_AUTHENTICATION="-----BEGIN NATS USER JWT-----\neyJ0eXAiOiJKV1QiLCJhbGciOiJlZDI1NTE5LW5rZXkifQ.eyJqdGkiOiI0T0hVUVlaVEE0SU1TMkUzR0tVSEFUNVpQM0JBNEtKNVFQVk1UMlpMQkw0WDJNTjJKSVJRIiwiaWF0IjoxNjczMTYwMTI3LCJpc3MiOiJBQk9OUEpWTkI3UzRZTFpKUTVUWkNZRzVKWkQ2T09CRFIyNlVUVzZUSFg3T1dDVVNFU1pSUkhGRiIsIm5hbWUiOiJldmVudF92aWV3ZXIiLCJzdWIiOiJVQUpEWUZYVFlQM0ZSWFJSVzZURDNMRFlFSzVLNklWSFJXV1RDSk1ZR1dLVTRFWU02TE1XNFFRRyIsIm5hdHMiOnsicHViIjp7ImFsbG93IjpbIi5BUEkuXHUwMDNlIl19LCJzdWIiOnsiYWxsb3ciOlsiX0lOQk9YLlx1MDAzZSIsInYwLnJ1c3Quc2VydmVycy5cdTAwM2UiXX0sInJlc3AiOnsibWF4IjoxLCJ0dGwiOjB9LCJzdWJzIjotMSwiZGF0YSI6LTEsInBheWxvYWQiOi0xLCJ0eXBlIjoidXNlciIsInZlcnNpb24iOjJ9fQ.0TPxUY_wJmIXLg3pWv7igF5VNZtN1EZI9ytBW91Q_09J4kUxb0d7xHjNJPV7EnVbXutOquJYUpivdZLkjU9FDA\n------END NATS USER JWT------\n\n************************* IMPORTANT *************************\nNKEY Seed printed below can be used to sign and prove identity.\nNKEYs are sensitive and should be treated as secrets.\n\n-----BEGIN USER NKEY SEED-----\nSUAFPT5X3FIDHDNJ6NIM62DKNLAOUES47F2UKSNQ7P3DANLADXRGDCMOAE\n------END USER NKEY SEED------\n\n*************************************************************\n"
+```
+
+## Credential configurations must use new lines
+New lines is what separate values and keys such as `-----BEGIN NATS USER JWT-----`, this means that in one-liner credentials such as above, you cannot ommit the new lines - also make sure you end with a new line!
+
+Simply doing this:
+```
+NATS_AUTHENTICATION=".... ------END USER NKEY SEED------"
+```
+
+Is not enough, end it with a new line:
+```
+NATS_AUTHENTICATION=".... ------END USER NKEY SEED------\n"
+```
