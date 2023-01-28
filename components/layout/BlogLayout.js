@@ -71,6 +71,22 @@ export default function BlogLayout({ post, children }) {
                     </span>
                   </div>
                 </div>
+
+                <div className="ml-3">
+                  <a className="text-sm leading-5 font-medium" style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      padding: "7px",
+                      textAlign: "center",
+                      color: "white",
+                      outline: "none",
+                      width: "200px",
+                      height: "32px",
+                      borderRadius: "16px",
+                      backgroundColor: "#0A66C2",
+                    }} href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=jonaslagoni" target="_blank">Follow on LinkedIn</a>
+                  </div>
               </div>
             </header>
             <article className="mb-32">
