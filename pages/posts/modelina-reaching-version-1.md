@@ -1,5 +1,5 @@
 ---
-title: "The road to Modelina v1"
+title: "A bedrock for code generators - Modelina V1"
 date: 2022-11-03T12:00:00+01:00
 type: Communication
 tags:
@@ -10,33 +10,40 @@ authors:
     photo: /img/avatars/jonaslagoni.webp
     link: https://github.com/jonaslagoni
     byline: AsyncAPI Maintainer
-excerpt: 'Heard of Modelina before? In case you have not (and even if you have), here is the backstory of Modelina as it just reached version 1'
+excerpt: ''
 ---
-
-Modelina who?
-
-Lets go back in time to when we first created it, we long had talked aobut the complexity of generating strongly typed models from message payloads and [had to figure out how we wanted to solve it](https://github.com/asyncapi/shape-up-process/issues/21). The main driver was that with the AsyncAPI generator and it's template engine, having each template generate the data models is a huge effort to not only maintain but also pull off.
-
-We could either 1) find existing library that solves the problems we phase and become a main contributor to the library (here we looked at QuickType and other model generation tools, we even reached out to the authors of QuickType see if they would be interresting in it, but they never got back to us), 2) we create a library from the bottom up that was designed with the requirements put forward.
-
-So what are those requirements?
-
-1. The library MUST be integrateable with our AsyncAPI generator and template engine for React and nunjucks.
-2. The Library MUST allow extensibility of the existing data models
-3. The library MUST be able to understand all kinds of inputs (because you can define the message payload with any kind of standard Avro, JSON Type defintion, JSON Schema along side different versions)
-
-You can read a lot more into the requirements and the research we did here: https://github.com/asyncapi/shape-up-process/issues/21
-
-### The origin
-We never ended up finding any existing library that lived up to our requirements for a model generation library, and [we ended up implementing our own library](https://github.com/asyncapi/shape-up-process/issues/43).
 
 `Modelina`, or rather `generator-model-sdk` (yes, that was the original name!)
 
-### Integrateable with the generator
-The main use-case here is that the AsyncAPI templates should be able to integrate Modelina to generate the desired models or even interact with it.
+With the release of Modelina version 1, it sits as a bedrock for future code generators. It is build not just to generate the payload models for AsyncAPI, but any kind of format... 
 
-When you create a template often times you just wish to know the model type for your payload.
+### It's Rise
 
+Lets go back in time to when we first created it, we long had talked about the complexity of generating strongly typed models from message payloads and [had to figure out how we wanted to solve it](https://github.com/asyncapi/shape-up-process/issues/21). 
+
+The main driver was that with the AsyncAPI generator and it's template engine, having each template generate the data models is a huge effort to not only maintain but also pull off. 
+
+We could either 1) find existing library that solves the problems we phase and become a main contributor to the library, 2) we create a library from the bottom up that was designed with the [specific set of requirements](https://github.com/asyncapi/shape-up-process/issues/42).
+
+> 1. The library MUST be integrateable with our AsyncAPI generator and template engine for React and nunjucks.
+> 2. The Library MUST allow extensibility of the existing data models
+> 3. The library MUST be able to understand all kinds of inputs (Avro, JSON Type defintion, JSON Schema, etc)
+
+We never did end up finding any existing library, altough QuickType looked quite promesing, but it was not possible for us to get involved.
+
+So probably no stranger to you by now but [we ended up implementing our own library](https://github.com/asyncapi/shape-up-process/issues/43).
+
+### The rise of integrations
+In AsyncAPI, one of it's most prominent features is your ability to decide on how you want to define the payload structure. Maybe you are keen on using JSON Schema, and define the payloads as a constraint system, or maybe you are an Avro person? 
+
+In reality it doesent matter, Modelina should be able to generate the data models regardless of the underlying standard you follow. It's also one of the major reasons it support many different kind of inputs https://github.com/asyncapi/modelina#features.
+
+One Modelinas main features, is actually not so much generating the models, but rather give you access to information about the models in memory, so something like the AsyncAPI Generator and templates each can interact with the generated models.
+
+### The rise of possibilities
+Why do you think there exist so many different programming languages? 
+
+When shove comes to shove, selecting anything for your stack depends in the end, on your team's current level and experience, and then where you want to go.
 
 ### Extensibility and customization of the model generation
 Developers truly are a self-centered piece of work! Coding have never been a math equation, as the result various based on so many different variables, that if you use the same process in different scenarios, you will end up with different results. It's the same thought when it comes to code, "I know best". 
