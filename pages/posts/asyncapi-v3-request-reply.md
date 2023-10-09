@@ -11,7 +11,7 @@ authors:
     photo: /img/avatars/jonaslagoni.webp
     link: https://github.com/jonaslagoni
     byline: AsyncAPI Maintainer
-excerpt: 'Get a first look at the new request and reply pattern in AsyncAPI v3'
+excerpt: 'Get a first look at the new request and reply pattern in AsyncAPI v3 with basic and complex scenarios'
 ---
 
 This post was originally intended for the AsyncAPI website, but [they had other plans](https://github.com/asyncapi/website/pull/2071#issuecomment-1753486030) and I had already written it, so now you get the pleasure of a teaser instead :smile: Thanks [Heiko Henning](https://github.com/GreenRover), [Hhridyesh Bisht](https://github.com/kakabisht), [Animesh Kumar](https://github.com/AnimeshKumar923), [Sergio Moya](https://github.com/smoya), and [Alejandra Quetzalli](https://github.com/alequetzalli) for the initial reviews :pray:
