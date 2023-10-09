@@ -16,7 +16,9 @@ excerpt: 'Get a first look at the new request and reply pattern in AsyncAPI v3 w
 
 This post was originally intended for the AsyncAPI website, but [they had other plans](https://github.com/asyncapi/website/pull/2071#issuecomment-1753486030) and I had already written it, so now you get the pleasure of a teaser instead :smile: Thanks [Heiko Henning](https://github.com/GreenRover), [Hhridyesh Bisht](https://github.com/kakabisht), [Animesh Kumar](https://github.com/AnimeshKumar923), [Sergio Moya](https://github.com/smoya), and [Alejandra Quetzalli](https://github.com/alequetzalli) for the initial reviews :pray:
 
-A common messaging pattern is [request and reply](https://www.enterpriseintegrationpatterns.com/patterns/messaging/RequestReply.html) and up until now it has been near impossible to describe it in AsyncAPI, that changes with AsyncAPI v3. And within it we will se there are different sub-patterns that of course are all supported in AsyncAPI v3. Enough talk, lets jump straight into it.
+A fair warning, this post is very cut and dry and goes straight to the point assuming some of the basic knowledge of the other v3 changes. If you want more in-depth information, take a look here: https://v3.asyncapi.com/blog/release-notes-3.0.0
+
+A common messaging pattern is [request and reply](https://www.enterpriseintegrationpatterns.com/patterns/messaging/RequestReply.html) and up until now, it has been near impossible to describe it in AsyncAPI, that changes with AsyncAPI v3. Within it, we will see there are different sub-patterns that of course are all supported, but enough talk, let's jump straight into it.
 
 # Describing a requester
 
@@ -26,7 +28,7 @@ We are going to use a very simple ping and pong example where a requester sends 
 asyncapi: 3.0.0
 
 info:
-  title: Ping/pong example for a requester with static reply channel
+  title: Ping/pong example for a requester
   version: 1.0.0
   description: Example with a requester that initiates the request/reply pattern on a different channel than the reply is using.
 
@@ -52,7 +54,7 @@ operations:
         $ref: '#/channels/pong'
 ```
 
-The `reply` section defines all the necessary information to properly reply to the request, such as where to, and with what message. This is just a simple example, but you can check the full list of properties under the [Operation Reply Object](https://www.asyncapi.com/docs/reference/specification/latest#operationReplyObject)
+The `reply` section defines all the necessary information to properly reply to the request, such as where to, and with what message. This is just a simple example, but you can check the full list of properties under the [Operation Reply Object](https://www.asyncapi.com/docs/reference/specification/v3.0.0-next-major-spec.14#operationReplyObject)
 
 # Describing a replier
 
@@ -62,7 +64,7 @@ Defining the **replier** is the same as for the requester, where we instead make
 asyncapi: 3.0.0
 
 info:
-  title: Ping/pong example for replier with static reply channel
+  title: Ping/pong example for replier
   version: 1.0.0
   description: Example with a replier that returns the response on a different channel than the request happened on.
 
@@ -85,13 +87,13 @@ This means that we `receive` a message over `ping` and we are expected to return
 
 In the simple example above, we saw how you could set up a request/reply pattern across two applications where one application is the requester and the other is the replier.
 
-However, in an protocol-agnostic world there are many different sub-patterns to the simple request/reply. All of which AsyncAPI v3 enables.
+However, in a protocol-agnostic world, there are many different sub-patterns to the simple request/reply. All of which AsyncAPI v3 enables.
 
 ## Request/reply with dynamic response channel
 
 In some cases, we do not know the reply channel at design time, but instead, it's dynamically determined at runtime. This could, for example, be using the request message payload or header to dictate the response address.
 
-Take notice of how we utilize `address: null` to define that we don't know the address just yet. This is just for illustration purposes as you can also omit the property entirely. We then utilize the [Operation Reply Address Object](https://www.asyncapi.com/docs/reference/specification/latest#operationReplyAddressObject) to define that the address of where to send the reply is located dynamically in the message header under `replyTo`.
+Take notice of how we utilize `address: null` to define that we don't know the address just yet. This is just for illustration purposes as you can also omit the property entirely. We then utilize the [Operation Reply Address Object](https://www.asyncapi.com/docs/reference/specification/v3.0.0-next-major-spec.14#operationReplyAddressObject) to define that the address of where to send the reply is located dynamically in the message header under `replyTo`.
 
 ```yml
 asyncapi: 3.0.0
@@ -152,7 +154,7 @@ operations:
         $ref: '#/channels/pong'
 ```
 
-You can use different types of `location` values here as it's not limited to headers specifically. You can also use payload properties with `$message.payload#/replyTo`. These types of values are [Runtime Expressions](https://www.asyncapi.com/docs/reference/specification/latest#runtimeExpression).
+You can use different types of `location` values here as it's not limited to headers specifically. You can also use payload properties with `$message.payload#/replyTo`. These types of values are [Runtime Expressions](https://www.asyncapi.com/docs/reference/specification/v3.0.0-next-major-spec.14#runtimeExpression).
 
 ## Request/reply over the same channel
 
@@ -164,9 +166,9 @@ To do this it's as simple as having both channels use the same address.
 asyncapi: 3.0.0
 
 info:
-  title: Ping/pong example with requester
+  title: Ping/pong example with requester over the same channel
   version: 1.0.0
-  description: Requester example initiating the request-reply pattern.
+  description: Requester example initiating the request-reply pattern that are using the same channel for the reply
 
 channels:
   ping:
