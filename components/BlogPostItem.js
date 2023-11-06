@@ -24,9 +24,14 @@ export default function BlogPostItem({ post, className = '' }) {
     case 'governance':
       typeColors = ['bg-red-100', 'text-red-800']
       break
-      
+    case 'pitch':
+      typeColors = ['bg-blue-100', 'text-red-800']
+      break
+    case 'engineering':
+      typeColors = ['bg-orange-100', 'text-orange-800']
+      break
     }
-    return <span key={type} className={`inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 ${typeColors[0]} ${typeColors[1]}`}>
+    return <span key={type} className={`inline-flex items-center px-3 py-0.5 mx-1.5 rounded-full text-sm font-medium leading-5 ${typeColors[0]} ${typeColors[1]}`}>
       {type}
     </span>;
   });
