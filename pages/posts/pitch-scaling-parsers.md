@@ -1,6 +1,6 @@
 ---
 title: "Scaling AsyncAPI parsers"
-date: 2023-10-09T22:00:00+01:00
+date: 2023-11-06T22:00:00+01:00
 type: 
   - Pitch
   - Communication
@@ -10,7 +10,7 @@ tags:
   - Automation
   - Tooling
   - Modelina
-cover: /img/posts/pitch-automating-parsers.webp
+cover: /img/posts/pitch-scaling-parsers.webp
 authors:
   - name: Jonas Lagoni
     photo: /img/avatars/jonaslagoni.webp
