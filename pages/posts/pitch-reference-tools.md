@@ -102,7 +102,7 @@ Secondary inputs that you can encounter in the main input and that we should sup
 4. Newer JSON Schema versions
 5. Other
 
-There are different ways that you should be able to interact with the library, i.e. its API surface:
+Long-term we need to support the following ways to interact with the library:
 
 - Resolve the fully qualified URI for a reference (this varies because the potential base URI is located differently according to the input), and it depends on the standard 
 - Get the resolved resource from the reference
