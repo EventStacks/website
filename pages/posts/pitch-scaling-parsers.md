@@ -70,7 +70,7 @@ I suggest we use [Modelina](https://github.com/asyncapi/modelina) to generate th
 I would completely ignore the nice-to-have features such as:
 - Do not care about parser API (there are ways we can automate this down the road)
 - Do not care about applying traits (improvement that can easily be contributed down the road)
-- Do not care about handling references (this is part of another pitch, TBD)
+- Do not care about handling references ([this is part of another pitch](https://eventstack.tech/posts/pitch-reference-tools))
 - Do not care about loading from URL (improvement that can easily be contributed down the road)
 - Do not care about loading from a string (an improvement that can easily be contributed down the road)
 
