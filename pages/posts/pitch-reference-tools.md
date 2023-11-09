@@ -110,7 +110,7 @@ There are different ways that you should be able to interact with the library, i
 
 # Related resources
 
-Related issues that this pitch will help solve:s
+Related issues that this pitch will help solve:
 - My initial proposal was added as a discussion and was then converted to a pitch https://github.com/orgs/asyncapi/discussions/485.
 - https://github.com/asyncapi/parser-js/issues/761
 - https://github.com/asyncapi/studio/issues/528
