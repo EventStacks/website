@@ -37,25 +37,21 @@ export default function BlogPostItem({ post, className = '' }) {
   });
   return (
     <div className={`flex flex-col rounded-lg shadow-lg overflow-hidden ${className}`}>
-      <Link href={post.slug} >
-        <a className="flex-shrink-0">
-          <img className="h-48 w-full object-cover" src={`${process.env.NEXT_PUBLIC_BASE_PATH ? process.env.NEXT_PUBLIC_BASE_PATH : ''}${post.cover}`} alt="" />
-        </a>
+      <Link href={post.slug} className="flex-shrink-0">
+        <img className="h-48 w-full object-cover" src={`${process.env.NEXT_PUBLIC_BASE_PATH ? process.env.NEXT_PUBLIC_BASE_PATH : ''}${post.cover}`} alt="" />
       </Link>
       <div className="flex-1 bg-white p-6 flex flex-col justify-between">
         <div className="flex-1">
           <p className="text-sm leading-5 font-normal text-indigo-500">
             {typeComponents}
           </p>
-          <Link href={post.slug} >
-            <a className="block">
-              <h3 className="mt-2 text-xl leading-7 font-semibold text-gray-900">
-                {post.title}
-              </h3>
-              <p className="mt-3 text-base leading-6 text-gray-500">
-                <TextTruncate element="span" line={4} text={post.excerpt} />
-              </p>
-            </a>
+          <Link href={post.slug} className="block">
+            <h3 className="mt-2 text-xl leading-7 font-semibold text-gray-900">
+              {post.title}
+            </h3>
+            <p className="mt-3 text-base leading-6 text-gray-500">
+              <TextTruncate element="span" line={4} text={post.excerpt} />
+            </p>
           </Link>
         </div>
         <div className="mt-6 flex items-center">
@@ -65,7 +61,7 @@ export default function BlogPostItem({ post, className = '' }) {
           <div className="ml-3">
             <p className="text-sm leading-5 font-medium text-gray-900">
               <span className="hover:underline">
-                {post.authors.map((author, index) => author.link ? <Link href={author.link} key={index}><a alt={author.name}>{author.name}</a></Link> : author.name).reduce((prev, curr) => [ prev, ' & ', curr ])}
+                {post.authors.map((author, index) => author.link ? <Link href={author.link} key={index} title={author.name}>{author.name}</Link> : author.name).reduce((prev, curr) => [ prev, ' & ', curr ])}
               </span>
             </p>
             <div className="flex text-sm leading-5 text-gray-500">

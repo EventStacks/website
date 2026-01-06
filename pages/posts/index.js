@@ -51,7 +51,7 @@ export default function PostPage() {
                 checks={toFilter}
               />
               <span className="text-sm leading-10">
-                <Link href="/posts" passHref><a> Clear filters</a></Link>
+                <Link href="/posts"> Clear filters</Link>
               </span>
             </div>
           </div>

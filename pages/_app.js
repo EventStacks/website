@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 import { MDXProvider } from '@mdx-js/react';
-import YouTube from 'react-youtube-embed';
+import YouTube from 'react-youtube';
 import {
   TwitterTimelineEmbed,
   TwitterShareButton,
@@ -188,6 +188,27 @@ function getMDXComponents() {
       />
     ),
     code: ({ children, className = '', metastring = '', ...rest }) => {
+      const maybeLanguage = className.match(/language-([\w\d\-_]+)/);
+      const language =
+        maybeLanguage && maybeLanguage.length >= 2
+          ? maybeLanguage[1]
+          : undefined;
+
+      // If there's no language and no newlines, it's inline code
+      if (!language && typeof children === 'string' && !children.includes('\n')) {
+        return (
+          <code
+            {...rest}
+            className={`${
+              className || ''
+            } px-1 py-0.5 bg-primary-700 text-white rounded font-mono text-sm`}
+          >
+            {children}
+          </code>
+        );
+      }
+
+      // Otherwise, it's a code block
       let caption;
       const meta = metastring.split(/([\w]+=[\w\d\s\-_:><.]+)/) || [];
       meta.forEach((str) => {
@@ -196,11 +217,7 @@ function getMDXComponents() {
         if (caption.startsWith('\'') && caption.endsWith('\''))
           caption = caption.substring(1, caption.length - 1);
       });
-      const maybeLanguage = className.match(/language-([\w\d\-_]+)/);
-      const language =
-        maybeLanguage && maybeLanguage.length >= 2
-          ? maybeLanguage[1]
-          : undefined;
+
       return (
         <CodeBlock
           {...rest}

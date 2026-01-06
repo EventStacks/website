@@ -34,7 +34,8 @@ function walkDirectories(directories, result, sectionWeight = 0, sectionTitle) {
     for (let file of files) {
       let details
       const fileName = join(directory, file)
-      const slug = fileName.replace(new RegExp(`^${basePath}`), '')
+      // Normalize path separators to forward slashes for URLs
+      const slug = fileName.replace(new RegExp(`^${basePath}`), '').replace(/\\/g, '/')
       if (isDirectory(fileName)) {
         details = {
           title: capitalize(basename(fileName)),
@@ -43,18 +44,18 @@ function walkDirectories(directories, result, sectionWeight = 0, sectionTitle) {
         details.slug = slug
         result.push(details)
         walkDirectories([[fileName, slug]], result, details.weight, details.title)
-      } else if (file.endsWith('.md') && !fileName.endsWith('/_section.md')) {
+      } else if (file.endsWith('.mdx') && !fileName.endsWith('/_section.mdx')) {
         const fileContent = readFileSync(fileName, 'utf-8')
         const { data, content } = frontMatter(fileContent)
         details = data
         details.toc = toc(content, { slugify: slugifyToC }).json
         details.readingTime = Math.ceil(readingTime(content).minutes)
         details.excerpt = details.excerpt || markdownToTxt(content).substr(0, 200)
-        details.sectionSlug = sectionSlug || slug.replace(/\.md$/, '')
+        details.sectionSlug = sectionSlug || slug.replace(/\.mdx$/, '')
         details.sectionWeight = sectionWeight
         details.sectionTitle = sectionTitle
-        details.isIndex = fileName.endsWith('/index.md')
-        details.slug = details.isIndex ? sectionSlug : slug.replace(/\.md$/, '');
+        details.isIndex = fileName.endsWith('/index.mdx') || fileName.endsWith('\\index.mdx')
+        details.slug = details.isIndex ? sectionSlug : slug.replace(/\.mdx$/, '');
         result.push(details)
       }
     }

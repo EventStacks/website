@@ -1,5 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("@tailwindcss/ui/colors");
+const colors = require("tailwindcss/colors");
 
 const colorPrimary = {
   100: "#e0f0fb",
@@ -22,43 +22,41 @@ function getColors(color, shades) {
 }
 
 module.exports = {
-  purge: false,
+  content: [
+    "./pages/**/*.{js,jsx,md,mdx}",
+    "./components/**/*.{js,jsx,md,mdx}",
+  ],
   theme: {
-    colors: {
-      ...colors,
-      primary: getColors(
-        colorPrimary,
-        [100, 200, 300, 400, 500, 600, 700, 800, 900]
-      ),
-      "code-editor": {
-        dark: "#002b36",
-        "dark-highlight": "#3e4d64",
-      },
-      hub: "#252f3f",
-      slack: "#371038",
-      "mac-window": {
-        close: "#ff5f56",
-        minimize: "#ffbd2e",
-        maximize: "#28c93f",
-      },
-    },
-    animations: {
-      blink: {
-        from: {
-          opacity: 1,
-        },
-        "50%": {
-          opacity: 0,
-        },
-        to: {
-          opacity: 1,
-        },
-      },
-    },
-    animationTimingFunction: {
-      "step-end": "step-end",
-    },
     extend: {
+      colors: {
+        primary: getColors(
+          colorPrimary,
+          [100, 200, 300, 400, 500, 600, 700, 800, 900]
+        ),
+        "code-editor": {
+          dark: "#002b36",
+          "dark-highlight": "#3e4d64",
+        },
+        hub: "#252f3f",
+        slack: "#371038",
+        "mac-window": {
+          close: "#ff5f56",
+          minimize: "#ffbd2e",
+          maximize: "#28c93f",
+        },
+      },
+      animation: {
+        blink: 'blink 1s step-end infinite',
+      },
+      keyframes: {
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+      },
+      transitionTimingFunction: {
+        "step-end": "step-end",
+      },
       scale: {
         25: ".25",
       },
@@ -119,5 +117,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/ui"), require("tailwindcss-animations")],
+  plugins: [require("@tailwindcss/forms")],
 };

@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function NavBar() {
   return (
   <div className="inset-0 leading-8 mb-6">
@@ -9,14 +11,14 @@ export default function NavBar() {
         <div className="flex-grow"></div>
 
         <div className="px-5 py-2">
-          <a href="/" className="text-base leading-6 text-gray-500 hover:text-gray-900">
+          <Link href="/" className="text-base leading-6 text-gray-500 hover:text-gray-900">
             Projects
-          </a>
+          </Link>
         </div>
         <div className="px-5 py-2">
-          <a href="/posts" className="text-base leading-6 text-gray-500 hover:text-gray-900">
+          <Link href="/posts" className="text-base leading-6 text-gray-500 hover:text-gray-900">
             Posts
-          </a>
+          </Link>
         </div>
       </nav>
     </div>

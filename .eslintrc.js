@@ -1,26 +1,17 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    node: true,
-  },
-  extends: ["eslint:recommended", "plugin:react/recommended"],
-  globals: {
-    Atomics: "readonly",
-    SharedArrayBuffer: "readonly",
-    React: "writable",
-  },
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2019,
-    sourceType: "module",
-  },
-  plugins: ["react"],
+  extends: ["next/core-web-vitals"],
   rules: {
+    "react/prop-types": "off",
+    "react/display-name": "off",
     "react/react-in-jsx-scope": "off",
     "no-useless-catch": "off",
-    // quotes: ["error", "single"],
+    "no-unused-vars": "warn",
+    "no-mixed-spaces-and-tabs": "warn",
+    "no-useless-escape": "warn",
+  },
+  settings: {
+    react: {
+      version: "detect",
+    },
   },
 };

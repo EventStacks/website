@@ -32,8 +32,7 @@ export default function Button({
   }
 
   return (
-    <Link href={href}>
-    <a target={target} className={classNames}>
+    <Link href={href} target={target} className={classNames}>
       {
         icon && iconPosition === 'left' && (
           <span className="inline-block mr-2">{icon}</span>
@@ -45,7 +44,6 @@ export default function Button({
           <span className="inline-block ml-2">{icon}</span>
         )
       }
-      </a>
     </Link>
   )
 }

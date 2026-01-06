@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Container from '../components/layout/Container'
 import Head from '../components/Head'
 import Footer from '../components/Footer'
@@ -31,18 +32,18 @@ export default function PostPage() {
               </p>
               <div className="grid grid-cols-2 gap-1 mt-15">
                 <div className="col-span-1 bg-white p-6 justify-between">
-                  <a href="/posts?tags=AsyncAPI" className="text-center">
+                  <Link href="/posts?tags=AsyncAPI" className="text-center">
                     Relevant posts
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-span-1 bg-white p-6 justify-between">
-                  <p className="text-center">
+                  <div className="text-center">
                     <a href="https://asyncapi.com" className="text-center">
-                      To Project
-                      <p className="mt-1 text-base leading-6 text-gray-500">asyncapi.com</p>
+                      <span className="block">To Project</span>
+                      <span className="block mt-1 text-base leading-6 text-gray-500">asyncapi.com</span>
                     </a>
-                  </p>
-                  <p className="mt-1 text-base leading-6 text-gray-500">
+                  </div>
+                  <div className="mt-1 text-base leading-6 text-gray-500">
                     <div className="mt-8 flex justify-center">
                       <a href="https://linkedin.com/company/asyncapi" target="_blank" className="text-gray-400 hover:text-blue-500" rel="noreferrer">
                         <span className="sr-only">LinkedIn</span>
@@ -61,7 +62,7 @@ export default function PostPage() {
                         <IconGithub className="h-6 w-6" />
                       </a>
                     </div>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -78,25 +79,25 @@ export default function PostPage() {
               </p>
               <div className="grid grid-cols-2 gap-1 mt-15">
                 <div className="col-span-1 bg-white p-6 justify-between">
-                  <a href="/posts?tags=GamingAPI" className="place-self-center text-center">
+                  <Link href="/posts?tags=GamingAPI" className="place-self-center text-center">
                     Relevant posts
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-span-1 bg-white p-6 justify-between">
-                  <p className="text-center">
+                  <div className="text-center">
                     <a href="https://gamingapi.org" className="text-center">
-                      To Project
-                      <p className="mt-1 text-base leading-6 text-gray-500">gamingapi.org</p>
+                      <span className="block">To Project</span>
+                      <span className="block mt-1 text-base leading-6 text-gray-500">gamingapi.org</span>
                     </a>
-                  </p>
-                  <p className="mt-1 text-base leading-6 text-gray-500">
+                  </div>
+                  <div className="mt-1 text-base leading-6 text-gray-500">
                     <div className="mt-8 flex justify-center">
                       <a href="https://github.com/GamingAPI/" target="_blank" className="text-gray-400 hover:text-gray-500" rel="noreferrer">
                         <span className="sr-only">GitHub</span>
                         <IconGithub className="h-6 w-6" />
                       </a>
                     </div>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
