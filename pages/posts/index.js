@@ -73,3 +73,10 @@ export default function PostPage() {
     </div>
   )
 }
+
+// Use SSR to avoid NextRouter errors during build
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}

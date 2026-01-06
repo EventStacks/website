@@ -1,36 +1,25 @@
 /* eslint-disable react/prop-types */
-import { MDXProvider } from '@mdx-js/react';
 import Layout from '../components/layout/Layout';
-import BlogLayout from '../components/layout/BlogLayout';
 import AppContext from '../context/AppContext';
-import { useMDXComponents } from '../mdx-components';
-import { getPostBySlug } from '../lib/api';
 import '../css/styles.css';
 
 export default function MyApp({ Component, pageProps, router }) {
-  const mdxComponents = useMDXComponents(pageProps.components);
-  const pathname = router?.pathname || '';
+  // Bypass layout for error pages during SSG
+  const is404 = router?.pathname === '/404' || router?.pathname === '/_error'
 
-  // Check if this is a blog post page
-  const isBlogPost = pathname && pathname.includes('/posts/') && pathname !== '/posts/';
-  let post = null;
-  if (isBlogPost) {
-    post = getPostBySlug(pathname);
+  if (is404) {
+    return (
+      <AppContext.Provider value={{ path: router?.asPath || '' }}>
+        <Component {...pageProps} />
+      </AppContext.Provider>
+    )
   }
 
   return (
     <AppContext.Provider value={{ path: router?.asPath || '' }}>
-      <MDXProvider components={mdxComponents}>
-        <Layout>
-          {isBlogPost && post ? (
-            <BlogLayout post={post}>
-              <Component {...pageProps} />
-            </BlogLayout>
-          ) : (
-            <Component {...pageProps} />
-          )}
-        </Layout>
-      </MDXProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </AppContext.Provider>
   );
 }

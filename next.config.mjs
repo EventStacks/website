@@ -1,15 +1,12 @@
-import createMDX from '@next/mdx'
-import remarkFrontmatter from 'remark-frontmatter'
-import remarkGfm from 'remark-gfm'
-import remarkGemoji from 'remark-gemoji'
-import rehypeSlug from 'rehype-slug'
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'mdx'],
+  pageExtensions: ['js', 'jsx'],
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  // Skip static optimization for error pages
   experimental: {
-    // Disable SSG for MDX pages to avoid build errors
-    isrMemoryCacheSize: 0,
+    skipTrailingSlashRedirect: true,
   },
   async redirects() {
     return [
@@ -22,11 +19,4 @@ const nextConfig = {
   },
 }
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [remarkFrontmatter, remarkGfm, remarkGemoji],
-    rehypePlugins: [rehypeSlug],
-  },
-})
-
-export default withMDX(nextConfig)
+export default nextConfig

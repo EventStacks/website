@@ -10,8 +10,8 @@ export default function TOC({
   contentSelector,
   depth = 2,
 }) {
-  const [open, setOpen] = useState(false)
-  
+  const [open, setOpen] = useState(true)
+
   if (!toc || !toc.length) return null
   const minLevel = toc.reduce((mLevel, item) => (!mLevel || item.lvl < mLevel) ? item.lvl : mLevel, 0)
   const tocItems = toc.filter(item => item.lvl <= minLevel + depth).map(item => ({
@@ -27,17 +27,17 @@ export default function TOC({
   return (
     <div className={`${className} ${tocItems.length ? '' : 'hidden'} ${cssBreakingPoint}:block z-20`}>
       <div className={`flex cursor-pointer ${tocItems.length ? '' : 'hidden'} ${cssBreakingPoint}:cursor-auto`} onClick={() => setOpen(!open)}>
-        <h5 className={`${open && 'mb-4'} flex-1 text-primary-500 font-medium uppercase tracking-wide text-sm font-sans antialiased ${cssBreakingPoint}:mb-4 ${cssBreakingPoint}:text-xs ${cssBreakingPoint}:text-gray-500 ${cssBreakingPoint}:font-thin`}>
+        <h5 className={`mb-4 flex-1 text-gray-600 font-normal uppercase tracking-wide text-xs font-sans antialiased`}>
           On this page
         </h5>
         <div className={`text-underline text-center p4 ${cssBreakingPoint}:hidden`}>
-          <ArrowRight className={`${ open ? '-rotate-90' : 'rotate-90' } transform transition duration-200 ease-in-out h-6 -mt-0.5 text-primary-500`} />
+          <ArrowRight className={`${ open ? '-rotate-90' : 'rotate-90' } transform transition duration-200 ease-in-out h-6 -mt-0.5 text-gray-400`} />
         </div>
       </div>
-      <div className={`${!open && 'hidden'} ${cssBreakingPoint}:block`}>
+      <div className={`${cssBreakingPoint}:block ${!open ? 'hidden' : ''}`}>
         <Scrollspy
           items={tocItems.map(item => item.slugWithATag)}
-          currentClassName="text-primary-600 font-bold"
+          currentClassName="text-blue-600 font-semibold border-l-2 border-blue-600"
           componentTag="div"
           rootEl={contentSelector}
         >
@@ -46,7 +46,7 @@ export default function TOC({
               <Link
                 href={`#${item.slug}`}
                 key={index}
-                className={`pl-${(item.lvl - minLevel) * 2} block mb-1 transition duration-100 ease-in-out text-gray-500 font-normal text-sm font-sans antialiased hover:text-gray-700 hover:font-medium`}
+                className={`pl-${(item.lvl - minLevel) * 2 + 2} block py-1 transition duration-100 ease-in-out text-gray-600 font-normal text-sm font-sans antialiased hover:text-gray-900 border-l-2 border-transparent`}
               >
                 {item.content}
               </Link>

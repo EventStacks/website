@@ -112,3 +112,10 @@ export default function PostPage() {
     </div>
   )
 }
+
+// Use SSR to avoid build errors
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}

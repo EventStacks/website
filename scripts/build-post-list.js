@@ -8,7 +8,7 @@ const readingTime = require('reading-time')
 const { markdownToTxt } = require('markdown-to-txt')
 
 const result = []
-const basePath = 'pages'
+const basePath = 'content'
 const postDirectories = [
   [`${basePath}/posts`],
 ]

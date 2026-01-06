@@ -1,18 +1,6 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 import YouTube from 'react-youtube';
-import {
-  TwitterTimelineEmbed,
-  TwitterShareButton,
-  TwitterFollowButton,
-  TwitterHashtagButton,
-  TwitterMentionButton,
-  TwitterTweetEmbed,
-  TwitterMomentShare,
-  TwitterDMButton,
-  TwitterVideoEmbed,
-  TwitterOnAirButton,
-} from 'react-twitter-embed';
 import Button from './components/buttons/Button';
 import ChapterSuggestions from './components/buttons/ChapterSuggestions';
 import CodeBlock from './components/editor/CodeBlock';
@@ -31,7 +19,7 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-4 font-sans antialiased font-medium text-2xl`}
+        } mt-8 mb-6 font-sans antialiased font-medium text-2xl`}
       />
     ),
     h2: (props) => (
@@ -39,7 +27,7 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-4 font-sans antialiased font-medium text-xl`}
+        } mt-8 mb-4 font-sans antialiased font-medium text-xl`}
       />
     ),
     h3: (props) => (
@@ -47,7 +35,7 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-4 font-sans antialiased font-medium text-lg`}
+        } mt-6 mb-4 font-sans antialiased font-medium text-lg`}
       />
     ),
     h4: (props) => (
@@ -55,7 +43,7 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-4 font-sans antialiased font-medium text-lg text-gray-500`}
+        } mt-6 mb-3 font-sans antialiased font-medium text-lg text-gray-500`}
       />
     ),
     h5: (props) => (
@@ -63,7 +51,7 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-4 font-sans antialiased text-md font-bold`}
+        } mt-6 mb-3 font-sans antialiased text-md font-bold`}
       />
     ),
     h6: (props) => (
@@ -71,7 +59,7 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-4 font-sans antialiased text-sm font-bold text-gray-500 uppercase`}
+        } mt-6 mb-3 font-sans antialiased text-sm font-bold text-gray-500 uppercase`}
       />
     ),
     blockquote: (props) => (
@@ -79,7 +67,7 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } italic font-sans antialiased text-gray-400 border-l-4 border-gray-400 pl-4 pt-1 pb-1 pr-1 my-4 bg-white`}
+        } italic font-sans antialiased text-base text-gray-700 border-l-4 border-gray-400 pl-6 pr-6 py-4 my-8 bg-gray-50`}
       />
     ),
     p: (props) => (
@@ -87,8 +75,11 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-4 text-gray-700 font-normal font-sans antialiased`}
+        } mb-6 text-gray-700 font-normal font-sans antialiased leading-loose`}
       />
+    ),
+    br: (props) => (
+      <br {...props} className="my-4" />
     ),
     strong: (props) => (
       <strong
@@ -113,7 +104,8 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-4 ml-4 list-disc text-gray-700 font-normal font-sans antialiased`}
+        } my-6 pl-8 list-disc list-inside marker:text-blue-500 text-gray-700 font-normal font-sans antialiased space-y-3`}
+        style={{ display: 'block', listStyleType: 'disc', listStylePosition: 'inside' }}
       />
     ),
     ol: (props) => (
@@ -121,7 +113,8 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-4 ml-4 list-decimal text-gray-700 font-normal font-sans antialiased`}
+        } my-6 pl-8 list-decimal list-inside marker:text-blue-500 marker:font-bold text-gray-700 font-normal font-sans antialiased space-y-3`}
+        style={{ display: 'block', listStyleType: 'decimal', listStylePosition: 'inside' }}
       />
     ),
     li: (props) => (
@@ -129,7 +122,8 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-2 text-gray-700 font-normal font-sans antialiased`}
+        } text-gray-700 font-normal font-sans antialiased leading-loose`}
+        style={{ display: 'list-item' }}
       />
     ),
     table: (props) => (
@@ -185,18 +179,19 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } my-4 max-w-full h-auto`}
+        } my-8 max-w-full h-auto`}
       />
     ),
     hr: (props) => (
-      <hr {...props} className={`${props.className || ''} my-8`} />
+      <hr {...props} className={`${props.className || ''} my-12 border-gray-300`} />
     ),
     inlineCode: (props) => (
       <code
         {...props}
         className={`${
           props.className || ''
-        } px-1 py-0.5 bg-primary-700 text-white rounded font-mono text-sm`}
+        } px-2 py-1 rounded font-mono text-sm font-semibold`}
+        style={{ backgroundColor: '#1f2937', color: '#f9a8d4' }}
       />
     ),
     code: ({ children, className = '', metastring = '', ...rest }) => {
@@ -213,7 +208,8 @@ export function useMDXComponents(components) {
             {...rest}
             className={`${
               className || ''
-            } px-1 py-0.5 bg-primary-700 text-white rounded font-mono text-sm`}
+            } px-2 py-1 rounded font-mono text-sm font-semibold`}
+            style={{ backgroundColor: '#1f2937', color: '#f9a8d4' }}
           >
             {children}
           </code>
@@ -230,15 +226,17 @@ export function useMDXComponents(components) {
           caption = caption.substring(1, caption.length - 1);
       });
       return (
-        <CodeBlock
-          {...rest}
-          caption={caption}
-          className={`${className || ''} rounded`}
-          language={language}
-          showLineNumbers={children.split('\n').length > 2}
-        >
-          {children}
-        </CodeBlock>
+        <div className="my-8">
+          <CodeBlock
+            {...rest}
+            caption={caption}
+            className={`${className || ''} rounded`}
+            language={language}
+            showLineNumbers={children.split('\n').length > 2}
+          >
+            {children}
+          </CodeBlock>
+        </div>
       );
     },
     CodeBlock,
@@ -250,15 +248,5 @@ export function useMDXComponents(components) {
     Row,
     Column,
     Figure,
-    TwitterTimelineEmbed,
-    TwitterShareButton,
-    TwitterFollowButton,
-    TwitterHashtagButton,
-    TwitterMentionButton,
-    TwitterTweetEmbed,
-    TwitterMomentShare,
-    TwitterDMButton,
-    TwitterVideoEmbed,
-    TwitterOnAirButton,
   };
 }

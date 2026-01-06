@@ -7,7 +7,6 @@ import TOC from '../TOC'
 import Container from './Container'
 import Footer from '../Footer'
 import AuthorAvatars from '../AuthorAvatars'
-import Custom404 from '../../pages/404'
 import React from 'react'
 
 function translations(post) {
@@ -25,7 +24,7 @@ function translations(post) {
 }
 
 export default function BlogLayout({ post, children }) {
-  if (!post) return <Custom404 />
+  if (!post) return <div style={{padding: '50px', textAlign: 'center'}}><h1>404 - Post Not Found</h1></div>
   if (post.title === undefined) throw new Error('Post title is required')
 
   const translationsElements = translations(post);
