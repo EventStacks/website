@@ -67,7 +67,12 @@ export function useMDXComponents(components) {
         {...props}
         className={`${
           props.className || ''
-        } italic font-sans antialiased text-base text-gray-700 border-l-4 border-gray-400 pl-6 pr-6 py-4 my-8 bg-gray-50`}
+        } italic font-sans antialiased text-base p-6 my-6`}
+        style={{
+          borderLeft: '4px solid #9ca3af',
+          color: '#374151',
+          fontStyle: 'italic'
+        }}
       />
     ),
     p: (props) => (
@@ -226,7 +231,7 @@ export function useMDXComponents(components) {
           caption = caption.substring(1, caption.length - 1);
       });
       return (
-        <div className="my-8">
+        <div className="mt-8 mb-12">
           <CodeBlock
             {...rest}
             caption={caption}
