@@ -10,7 +10,8 @@ export default function HeadComponent({
   rssLink = '/rss.xml'
 }) {
   const url = process.env.NEXT_PUBLIC_BASE_PATH ? process.env.NEXT_PUBLIC_BASE_PATH : '';
-  const { path = '' } = useContext(AppContext)
+  const appContext = useContext(AppContext)
+  const path = appContext?.path || ''
   const permalink = `${url}${path}`
   let type = 'website'
   if (path.startsWith('/posts')) type = 'article'

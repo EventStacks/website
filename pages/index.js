@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Container from '../components/layout/Container'
 import Head from '../components/Head'
 import Footer from '../components/Footer'
@@ -101,7 +102,9 @@ export default function PostPage() {
                 </div>
               </div>
             </div>
-            <img className="h-60 lg:col-span-6 sm:col-span-12 object-cover" alt="" width="100%" src="/img/event-stack.webp" />
+            <div className="h-60 lg:col-span-6 sm:col-span-12 relative">
+              <Image className="object-cover" alt="" fill src="/img/event-stack.webp" />
+            </div>
           </div>
         </div>
       </div>
