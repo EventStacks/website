@@ -61,7 +61,8 @@ The reason is its XML :sweat_smile: I ended up using a [support library](https:/
 else
   library_last_version="0.0.0"
 fi
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 ### Auto-generate the library 
 Next is to trigger the code generation when the API definition receives a version change. If you have read the [TypeScript setup](/posts/automated-utopia-typescript), this setup is pretty much the same.
@@ -107,7 +108,8 @@ jobs:
         with:
           title: "fix: patch version change"
           body: $\{\{env.commit_message\}\}
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 To remotely trigger the code generation from where the AsyncAPI documents are located, we can then use the GitHub action `benc-uk/workflow-dispatch` to trigger the workflow remotely. This is run whenever the bundled AsyncAPI document change. This is my lazy way of detecting version changes, [as the AsyncAPI documents are bundled on each release](/posts/reusability-causing-problems).
 
@@ -131,7 +133,8 @@ jobs:
           token: $\{\{ secrets.GH_TOKEN \}\}
           repo: GamingAPI/rust-csharp-public-api
       - \# Update ... public game API library
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 The only thing we cannot trigger upon is when the code template receives a change. You could fall back to a cronjob which could trigger the generation workflow at some specific time, so it's semi-automatic. 
 
@@ -201,7 +204,8 @@ jobs:
           title: 'chore(release): v$\{\{steps.version_bump.outputs.newVersion\}\}'
           body: Version bump
           branch: 'version-bump/v$\{\{steps.version_bump.outputs.newVersion\}\}'
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 ## Next
 That finalizes the .NET setup, and now all there is left is to automate the library creation in GitHub, as it's ever-changing how many languages are provided for each game, and how many games are supported. Therefore I need some kind of setup where it enables me to quickly change any of these parameters.

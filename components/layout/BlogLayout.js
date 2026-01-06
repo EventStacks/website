@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 import moment from 'moment'
 import Head from '../Head'
@@ -26,15 +25,8 @@ function translations(post) {
 }
 
 export default function BlogLayout({ post, children }) {
-  const router = useRouter()
-
   if (!post) return <Custom404 />
   if (post.title === undefined) throw new Error('Post title is required')
-
-  // During static generation, router might not be fully initialized
-  if (router && !router.isFallback && !(post && post.slug)) {
-    return <Custom404 />
-  }
 
   const translationsElements = translations(post);
   const postImage = `${process.env.NEXT_PUBLIC_BASE_PATH ? process.env.NEXT_PUBLIC_BASE_PATH : ''}${post.cover}`;

@@ -51,7 +51,8 @@ To start with the ruleset should extend the built-in AsyncAPI ruleset (so we can
 functions: [],
 rules: 
   ...
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 Now it's time to go through each of the consistency guidelines and match each up with a Spectral rule.
 
@@ -73,7 +74,8 @@ For this some of the [built-in rules can be enabled](https://meta.stoplight.io/d
   asyncapi-parameter-description: error
   asyncapi-operation-operationId: error
   asyncapi-tag-description: error
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 
 ### Running the linting
@@ -90,7 +92,8 @@ I tried a couple of setups but eventually ended up with a simple [package.json](
     "@stoplight/spectral-cli": "^6.3.0"
   }
 }
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 There are many ways you can achieve this, however, because I am gonna add other node scripts later this was the most simple for me.
 
@@ -115,7 +118,8 @@ jobs:
         run: npm install
       - name: Lint AsyncAPI files
         run: npm run lint
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 ### Next
 

@@ -37,7 +37,8 @@ rules:
     severity: error
     then:
       function: use-suffix-for-date-time
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 The custom function then checks all properties against whether the property use date/time formats and if they do, ensure that the property ends with `_at`:
 
@@ -80,7 +81,8 @@ rules:
     severity: error
     then:
       function: snake-case-properties
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 The custom function then for each property, format it as snake_case, and if the original property is not equal to the snake case variant, return there is an issue.
 
@@ -113,6 +115,7 @@ Issue proposing to bring this as part of the built-in ruleset in Spectral: https
 
 
 This check can be done by matching all channel keys against a regex pattern, which ensures `v<NUMBER>` MUST be present, otherwise, it will result in an error.
+
 <CodeBlock language="yaml">
 {`rules: 
   ...
@@ -125,7 +128,8 @@ This check can be done by matching all channel keys against a regex pattern, whi
       function: pattern
       functionOptions:
         match: ".*(v(.*[0-9])).*"
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 Issue proposing to bring this as part of the built-in ruleset in Spectral: https://github.com/stoplightio/spectral/issues/2116
 
@@ -136,6 +140,7 @@ Spectral normally resolves all references before you can check them, but you can
 
 #### Parameters
 The channel parameters can be checked that each is always defined with `$ref` instead of any information.
+
 <CodeBlock language="yaml">
 {`rules: 
   ...
@@ -154,12 +159,14 @@ The channel parameters can be checked that each is always defined with `$ref` in
                 type: object
                 required:
                   - $ref
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 Issue proposing to bring this as part of the built-in ruleset in Spectral: https://github.com/stoplightio/spectral/issues/2117
 
 #### Messages
 Messages are a bit different because you can define messages with `oneOf`, and if that is the case, we need to match against an array of references instead of a single instance.
+
 <CodeBlock language="yaml">
 {`rules: 
   ...
@@ -187,7 +194,8 @@ Messages are a bit different because you can define messages with `oneOf`, and i
             type: object
             required:
               - $ref
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 Issue proposing to bring this as part of the built-in ruleset in Spectral: https://github.com/stoplightio/spectral/issues/2118
 
@@ -200,6 +208,7 @@ I proposed this is a new feature for Spectral: https://github.com/stoplightio/sp
 > MUST always return JSON objects as top-level data structures
 
 For this rule, we can check that the message payloads always are defined as `type: "object"`.
+
 <CodeBlock language="yaml">
 {`rules: 
   ...
@@ -214,7 +223,8 @@ For this rule, we can check that the message payloads always are defined as `typ
           properties:
             type:
               const: "object"
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 Issue proposing to bring this as part of the built-in ruleset in Spectral: https://github.com/stoplightio/spectral/issues/2119
 
@@ -222,6 +232,7 @@ Issue proposing to bring this as part of the built-in ruleset in Spectral: https
 > SHOULD avoid additionalProperties unless used as a map partly inspired by 210 (each object should be as constrained as possible and additionalProperties should not be used unless used to define a map.).
 
 For this, the simplest form of rule I found, was to match all objects `@object()` under the message payload.
+
 <CodeBlock language="yaml">
 {`...
 functions: [..., payload-with-no-additional-properties-unless-map]
@@ -232,7 +243,8 @@ rules:
     severity: error
     then:
       function: payload-with-no-additional-properties-unless-map
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 And then ensure that `properties` and `additionalProperties` cannot be defined at the same time for each JSON object. The easiest way to solve this was through a custom function.
 

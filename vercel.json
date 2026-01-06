@@ -1,0 +1,7 @@
+{
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "node scripts/build-post-list.js && node scripts/build-rss.js",
+  "devCommand": "npm run dev",
+  "framework": null,
+  "outputDirectory": "."
+}

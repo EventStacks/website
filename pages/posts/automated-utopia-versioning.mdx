@@ -61,7 +61,8 @@ The general steps I follow regardless of programming language are:
   \# Remove all the files that are not related to the continuous code generation setup 
   \# Generate the new library
   \# Save the versions of the current code template and the API document for next time
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 In my case, I decided to write this code as a bash script (kinda regret it, but here we are :laughing:), but in theory, this could be anything language that fits your use case. I also think I am going to put all of this into a GitHub action or something similar :thinking: To make it easier to integrate into any setup.
 
@@ -82,7 +83,8 @@ The way I choose to handle them is through a simple JSON file, which contains th
   "template_last_version": "0.4.11",
   "document_last_version": "0.7.0"
 }
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 This config file says that the last time the library got generated, it was done with the template version `0.4.11` and an AsyncAPI document version of `0.7.0`.
 
@@ -93,7 +95,8 @@ Utilizing [jq](https://stedolan.github.io/jq/), we can then read the versions:
 <CodeBlock caption="Utilizing `jq` to read the content of the `configs.json` file." language="bash">
 {`document_last_version=$(cat ./configs.json | jq -r '.document_last_version')
 template_last_version=$(cat ./configs.json | jq -r '.template_last_version')
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 The way to do this is by reading the file (`cat ./configs.json`) and using that as input to `jq`, where the property `document_last_version` and `document_last_version` can then be read and saved to a variable for later.
 
@@ -107,7 +110,8 @@ This will be part of the next two parts of the series.
 <CodeBlock caption="Utilizing `jq` and GitHub to read the current version of the template." language="bash">
 {`template_to_use="jonaslagoni/dotnet-nats-template"
 template_current_version=$(curl -sL https://raw.githubusercontent.com/$\{template_to_use\}/master/package.json | jq -r '.version' | sed 's/v//')
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 Since the templates I use are all open-sourced, I can access the raw `package.json` file to read the current version. For example, here I am using a fork of the official AsyncAPI template for .NET NATS. The reason I am using a fork instead of the official is that I have quite a few changes that are needed so it gives you a bit more flexibility ([#260](https://github.com/asyncapi/dotnet-nats-template/pull/260), [#261](https://github.com/asyncapi/dotnet-nats-template/pull/261), [#262](https://github.com/asyncapi/dotnet-nats-template/pull/262), [#265](https://github.com/asyncapi/dotnet-nats-template/pull/265), [#266](https://github.com/asyncapi/dotnet-nats-template/pull/266) and [#268](https://github.com/asyncapi/dotnet-nats-template/pull/268)).
 
@@ -116,11 +120,13 @@ For the AsyncAPI documents, I am going to utilize the similar call as above, whe
 <CodeBlock caption="Utilizing `jq` to read the current version of the AsyncAPI document." language="bash">
 {`url_to_asyncapi_document="https://raw.githubusercontent.com/GamingAPI/definitions/main/bundled/rust.asyncapi.json"
 document_current_version=$(curl -sL $\{url_to_asyncapi_document\} | jq -r '.info.version' | sed 's/v//')
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 ### Find the correct version change to apply based on the old versions and the new ones.
 
 Because both the template and the AsyncAPI document use `semver`, we can split up the versions into major, minor, and patch (`major.minor.patch`). For simplicity, and because I don't have the use-case at the moment, I am leaving out pre-release and build ids. This way it's easier to compare the versions with each other.
+
 <CodeBlock caption="Splitting up the semver versions of the current and last template and AsyncAPI document version." language="bash">
 {`\# Initial setup of variables
 library_last_version="0.0.0"
@@ -187,7 +193,8 @@ elif [ $minor_template_change == "true" ] || [ $minor_document_change == "true" 
 elif [ $patch_template_change == "true" ] || [ $patch_document_change == "true" ]; then
   patch_version_change="true"
 fi
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 
 It looks like much, but that's just bash for you, either it's easy to read and fill a lot of lines or short and unreadable :smile: 
@@ -201,7 +208,8 @@ Afterward it is as easy as checking if we need to do one of the three changes.
 {`if [ $major_version_change == "true" ] || [ $minor_version_change == "true" ] || [ $patch_version_change == "true" ]; then
   \# Time to do a version change
 fi
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 ### Remove all the files that are not related to the continuous code generation setup 
 The reason why we need to remove the generated code is that between template versions, new files might be introduced or removed. Simply re-generating without removing previous code could leave unintended code laying around.
@@ -211,7 +219,8 @@ So since we cannot control what the template generates, we can control what the 
 <CodeBlock caption="Removing all the previous generated files to ensure there are no unintended files present." language="bash">
 {`\# Remove previous generated files to ensure clean slate
 find . -not \( -name configs.json -or -name .gitignore -or -name LICENSE -or -name generate.sh -or -iwholename *.github* -or -iwholename *.git* -or -name . \) -exec rm -rf {} +
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 ### Generate the new library
 
@@ -235,7 +244,8 @@ fi
      -p packageVersion="$\{library_last_version\}" \\
      -p assemblyVersion="$\{library_last_version\}.0" \\
      -p fileVersion="$\{library_last_version\}.0"
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 As each template has specific parameters this example shows how it uses the dotnet-nats-template with the specific parameters.
 
@@ -246,7 +256,8 @@ With the new code generated, we can now save the template and the AsyncAPI docum
 <CodeBlock caption="After the library is generated we can now save the versions used to generate the library for next time." language="bash">
 {`\# Write new config file to ensure we keep the new state for next time
 contents="$(jq ".template_last_version = \"$template_current_version\" | .document_last_version = \"$document_current_version\"" configs.json)" && echo "$\{contents\}" > configs.json
-`}</CodeBlock>
+`}
+</CodeBlock>
 
 In theory, you could overwrite the `configs.json` file without using `jq`, but if you wanted to add extra properties to the file, you would have to adapt this code, so this is more future-proof.
 

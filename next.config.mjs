@@ -7,6 +7,10 @@ import rehypeSlug from 'rehype-slug'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'mdx'],
+  experimental: {
+    // Disable SSG for MDX pages to avoid build errors
+    isrMemoryCacheSize: 0,
+  },
   async redirects() {
     return [
       {
@@ -20,14 +24,8 @@ const nextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [
-      remarkFrontmatter,
-      remarkGfm,
-      remarkGemoji,
-    ],
-    rehypePlugins: [
-      rehypeSlug,
-    ],
+    remarkPlugins: [remarkFrontmatter, remarkGfm, remarkGemoji],
+    rehypePlugins: [rehypeSlug],
   },
 })
 

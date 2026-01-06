@@ -66,7 +66,8 @@ const input = {
 };
 const generator = new RustGenerator();
 const models = await generator.generate(input);
-...`}</CodeBlock>
+...`}
+</CodeBlock>
 
 <CodeBlock caption="A simple Rust struct generated for the message payload" language="rust">
 {`\#[derive(Clone, Debug, Deserialize, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize)]
@@ -80,7 +81,8 @@ impl Root {
       email,
     }
   }
-}`}</CodeBlock>
+}`}
+</CodeBlock>
 
 The Rust generator contains many features, such as generating tuples types, unions, enums, structs, and even the crate file! 
 
@@ -103,9 +105,11 @@ channels:
   user/signup:
     subscribe:
       message:
-        \$ref: './UserSignedUp.yaml'`}</CodeBlock>
+        \$ref: './UserSignedUp.yaml'`}
+</CodeBlock>
 
 And with an external message definition for the `UserSignedUp`.
+
 <CodeBlock caption="The separated message definition (UserSignedUp.yaml)" language="yaml">
 {`payload:
   type: object
@@ -116,9 +120,11 @@ And with an external message definition for the `UserSignedUp`.
     email:
       type: string
       format: email
-      description: Email of the user`}</CodeBlock>
+      description: Email of the user`}
+</CodeBlock>
 
 The bundler can then place all the external dependencies into the components sections to give you the bundled AsyncAPI document:
+
 <CodeBlock caption="The bundled AsyncAPI document that uses local references (asyncapi.bundled.yaml)" language="yaml">
 {`asyncapi: 2.4.0
 info:
@@ -142,7 +148,8 @@ components:
           email:
             type: string
             format: email
-            description: Email of the user`}</CodeBlock>
+            description: Email of the user`}
+</CodeBlock>
 
 ## To that end
 
